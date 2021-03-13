@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>StudyMap</title>
+  <link href="/static/style.css" rel="stylesheet">
+</head>
+
+
+<body>
+    <h1>Signup</h1>
+    {% if error %}
+        <span class="error">{{error}}</span>
+    {% endif %}
+    <div>
+        <form action="/create-user/" method="POST">
+            <p>
+            <label>Username</label>
+            <input type="text" name="username">
+            </p>
+            <p>
+            <label>Password</label>
+            <input type="password" name="password">
+            </p>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+   
+</body>
+</html>
