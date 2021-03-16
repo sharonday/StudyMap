@@ -1,28 +1,53 @@
 <html>
 <head>
-  <title>StudyMap</title>
+  <title>StudyMap Sign-Up</title>
   <link href="/static/style.css" rel="stylesheet">
 </head>
-
-
-<body>
-    <h1>Signup</h1>
-    {% if error %}
+    <body class="login-page">
+    <div class="login-box">
+    <img src="/static/avatar.png" class="avatar">
+        <h1 class="login-header">Sign-Up</h1>
+        {% if error %}
         <span class="error">{{error}}</span>
-    {% endif %}
-    <div>
+        {% endif %}
+
         <form action="/create-user/" method="POST">
-            <p>
-            <label>Username</label>
-            <input type="text" name="username">
-            </p>
-            <p>
-            <label>Password</label>
-            <input type="password" name="password">
-            </p>
-            <button type="submit">Login</button>
-        </form>
-    </div>
+            <p>Username</p>
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <p>Password</p>
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+            <p>Confirm Password</p>
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Enter Password" required>            
+            <input type="submit" name="submit" value="Create New Account">
+            <p align="right"><a href="/login">Go Back</a></p>
+            </form>
+
+        </div>
+
+        <script>
+            var password = document.getElementById("password");
+            var confirm_password = document.getElementById("confirm-password");
+            function validatePassword()
+            {
+                console.log(password.value);
+                console.log(confirm_password.value);
+                console.log(password.value != confirm_password.value);
+                if(password.value != confirm_password.value)
+                {
+                    confirm_password.setCustomValidity("Passwords Don't Match");
+                    confirm_password.reportValidity();
+                } 
+                else
+                {
+                    confirm_password.setCustomValidity("");
+                    confirm_password.reportValidity();
+                }
+            }
+
+            confirm_password.onchange = validatePassword;
+        </script>
+    
+    </body>
    
 </body>
 </html>

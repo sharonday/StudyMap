@@ -1,28 +1,29 @@
 <html>
 <head>
-  <title>StudyMap</title>
-  <link href="/static/style.css" rel="stylesheet">
+    <title>StudyMap Login</title>
+    <link href="/static/style.css" rel="stylesheet">
 </head>
-
-
-<body>
-    <h1>Login</h1>
-    {% if error %}
+    <body class="login-page">
+    <div class="login-box">
+    <img src="/static/avatar.png" class="avatar">
+        <h1 class="login-header">Login</h1>
+        {% if error %}
         <span class="error">{{error}}</span>
-    {% endif %}
-    <div>
+        {% endif %}
+
         <form action="/login-user/" method="POST">
-            <p>
-            <label>Username</label>
-            <input type="text" name="username">
-            </p>
-            <p>
-            <label>Password</label>
-            <input type="password" name="password">
-            </p>
-            <button type="submit">Login</button>
+            <p>Username</p>
+            <input type="text" name="username" placeholder="Enter Username" required>
+            <p>Password</p>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <input type="submit" name="submit" value="Login">
+             
         </form>
-    </div>
-   
-</body>
+        
+        <input type="submit" name="gotosignup" value="Sign-Up" onclick="location.href='/signup'">
+            
+        
+        </div>
+    
+    </body>
 </html>

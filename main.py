@@ -34,22 +34,23 @@ def login():
     login_info = UserMan(username, password)
     user = login_info.verify_password(datastore_client)
     if not user:
-        return render_template("login.html", error="Wrong Password.")
+        return render_template("login.html", error="Wrong Username or Password.")
     session["user"]=login_info.username
     return redirect("/")
 
 @app.route("/create-user/", methods=["POST"])
 def create_new_user():
     username = request.form.get("username")
-    password = request.form.get("password")
-    if username in existing_user():
+    password = request.form.get("password")  
+    #print(list(existing_users()))
+    if username in existing_users():
         return render_template("signup.html", error="Username is already taken.")
     new_user = UserMan(username, password)
     new_user.store_user(datastore_client)
     session["user"]=new_user.username
     return redirect("/")    
 
-def existing_user():
+def existing_users():
     query = datastore_client.query(kind="Login")
     users = query.fetch()
     return [u["username"] for u in users if "username" in u]
