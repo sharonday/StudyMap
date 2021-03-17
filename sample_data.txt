@@ -1,0 +1,23 @@
+User: Caroline Shafer
+Username: cshafer
+Password: password1
+Schedule: Sunday-Thursday 4-10pm
+Courses: CS1520
+Assignment: Project 2, approx. 15 hours
+Days Off: Friday, Saturday
+
+User: Raya Pezzillo
+Username: rpezzillo
+Password: password2
+Schedule: Tuesday and Thursday 9-5pm
+Courses: CS1550
+Assignment: Project 3, approx. 20 hours
+Days Off: Monday, Wednesday
+
+User: Gabby Swartz
+Username: gswartz
+Password: password3
+Schedule: Sunday-Thursday 10pm-10am
+Courses: CS1555
+Assignment: Project 5, approx. 10 hours
+Days Off: Friday
