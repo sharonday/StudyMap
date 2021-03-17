@@ -1,3 +1,29 @@
+/* nicks css 
+h1{
+    text-align: center;
+    color: black;
+}
+
+
+.mid{
+    margin: 0 25% 0 25%;
+    background-color: white ;
+}
+
+.top{
+    background-color: antiquewhite ;
+}
+
+html{
+    background-color: rgb(56, 55, 56) ;
+}
+
+div > h2 {
+    text-align: center;
+}
+ end of nicks css */
+
+ 
 /* login page css */
 .login-page{
     margin: 0;

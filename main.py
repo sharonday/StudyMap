@@ -23,6 +23,18 @@ def login_page():
 def signup_page():
     return render_template("signup.html", error=[])
 
+@app.route("/free_hours")
+def hours_page():
+    return render_template("free_hours.html", error=[])
+
+@app.route("/course")
+def course_page():
+    return render_template("course.html", error=[])
+
+@app.route("/assignment")
+def assignment_page():
+    return render_template("assignment.html", error=[])
+
 # Gets the username of the current user if they are signed in
 def get_current_user():
     return session.get("user", None)

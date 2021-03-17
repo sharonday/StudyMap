@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../static/style.css" type = "text/css" rel="stylesheet"/>
-    <script src="script.js"></script>
+    <link href="/static/style.css" rel="stylesheet">
     <title>StudyMap</title>
 </head>
 
 
-<body>
+<body>    
     <main class = "mid">
         <header class = "top">
         <h1>Welcome to StudyMap</h1>
@@ -45,39 +44,6 @@
                 {
                     var course1 = document.getElementById("course1").value;
                     alert("You've entered Course: " + course1);
-                }
-            </script>
-
-
-            <h2>Add Assignments</h2>
-            <form>
-                <p>
-
-                    <label>Assignment Name</label>
-                    <input type = "text" name = "hwname">
-                </p>
-                <p>
-                    <label>Due Date</label>
-                    <input type = "text" name = "hwdate">
-                </p>
-                    <label>What course is this for?</label>
-                    <input type = "text" name = "hwcourse">
-                <p>
-                    <label>Estimated Work Time (Hours)</label>
-                    <input type = "text" name = "hours">
-                </p>
-                <p>
-                    <button type="button">Submit Assignment</button>
-                </p>
-            </form>
-            <script>
-                function assignment() 
-                {
-                    var hwname = document.getElementById("hwname").value;
-                    var hwdate = document.getElementById("hwdate").value;
-                    var hwcourse = document.getElementById("hwcourse").value;
-                    var hours = document.getElementById("hours").value;
-                    alert("You've entered Assignment: " + hwname + " Due: " + hwdate + " for "  + hwcourse + " with estimated work time: " + hours);
                 }
             </script>
         </div>
