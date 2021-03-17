@@ -40,17 +40,8 @@
             </p>
             </form>
 
-            <script>
-                function course() 
-                {
-                    var course1 = document.getElementById("course1").value;
-                    alert("You've entered Course: " + course1);
-                }
-            </script>
-
-
             <h2>Add Assignments</h2>
-            <form>
+            <form action ="/add_assignment/" method = "POST">
                 <p>
 
                     <label>Assignment Name</label>
@@ -70,16 +61,6 @@
                     <button type="button">Submit Assignment</button>
                 </p>
             </form>
-            <script>
-                function assignment() 
-                {
-                    var hwname = document.getElementById("hwname").value;
-                    var hwdate = document.getElementById("hwdate").value;
-                    var hwcourse = document.getElementById("hwcourse").value;
-                    var hours = document.getElementById("hours").value;
-                    alert("You've entered Assignment: " + hwname + " Due: " + hwdate + " for "  + hwcourse + " with estimated work time: " + hours);
-                }
-            </script>
         </div>
     </main>
 </body>
