@@ -63,3 +63,9 @@ def logout():
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5000, debug=True) 
+
+    #python3 main.py  to run it
+    #ctr +c to end the session 
+    
+    # how html forms work 
+    # get checkout alyssa to get files 
