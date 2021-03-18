@@ -18,7 +18,7 @@
         </header>
         <div id = "add">
             <h2>Add Course Info</h2>
-            <form id = "course" action= "/add-course/" method = "POST">
+            <form id = "course" action = "/add-course/" method = "POST">
             
             <p>
                 <label>Course Name</label>
@@ -26,7 +26,7 @@
             </p>
             <p>
                 <label>Course Color</label>
-                <select name = "dropdown">
+                <select name = "course_colors">
                     <Option value = "white"></Option>
                     <Option value = "red" name = "red">red</Option>
                     <Option value = "blue" name = "blue">blue</Option>
@@ -35,7 +35,7 @@
                     <Option value = "purple" name = "purple">purple</Option>
                     <Option value = "black" name = "black">black</Option>
                 </select>
-                <button type="button">Submit Course</button>
+                <input type="submit" name="submit" value="Submit">
             </p>
             </form>
 

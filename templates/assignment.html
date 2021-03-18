@@ -18,7 +18,7 @@
         </header>
         <div id = "add">
             <h2>Add Assignments</h2>
-            <form>
+            <form id = "assignments" action= "/add-assignment/" method = "POST">
                 <p>
 
                     <label>Assignment Name</label>
@@ -26,16 +26,16 @@
                 </p>
                 <p>
                     <label>Due Date</label>
-                    <input type = "text" name = "hwdate">
+                    <input type = "date" name = "hwdate">
                 </p>
                     <label>What course is this for?</label>
                     <input type = "text" name = "hwcourse">
                 <p>
                     <label>Estimated Work Time (Hours)</label>
-                    <input type = "text" name = "hours">
+                    <input type = "number" min="1" name = "hours">
                 </p>
                 <p>
-                    <button type="button">Submit Assignment</button>
+                    <input type="submit" name="submit" value="Submit">
                 </p>
             </form>
             <script>
