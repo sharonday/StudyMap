@@ -105,7 +105,6 @@ def enter_assignments():
     user = session.get("user", None)
     new_assign = Assignment(assign_name, assign_date, assign_course, assign_hours, user)
     new_assign.store_assignment(datastore_client)
-    get_assignments()
     return redirect("/")
 
 # get the current user's courses
