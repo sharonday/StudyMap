@@ -138,17 +138,30 @@ def logout():
 @app.route("/add-schedule/", methods=["POST"])
 #gets the busy hours for a user
 def get_busy_hours():
+        sun_hours = generateScheduleID("SUN", 0, 24)
         mon_hours = generateScheduleID("MON", 0, 24)
+        tue_hours = generateScheduleID("TUES", 0, 24)
+        wed_hours = generateScheduleID("WED", 0, 24)
+        thu_hours = generateScheduleID("THURS", 0, 24)
+        fri_hours = generateScheduleID("FRI", 0, 24)
+        sat_hours = generateScheduleID("SAT", 0, 24)
+        
+        #parse the day based on the column index 
+        parseDayCheckboxes(sun_hours, 0)
         parseDayCheckboxes(mon_hours, 1)
-
+        parseDayCheckboxes(tue_hours, 2)
+        parseDayCheckboxes(wed_hours, 3)
+        parseDayCheckboxes(thu_hours, 4)
+        parseDayCheckboxes(fri_hours, 5)
+        parseDayCheckboxes(sat_hours, 6)
+        
 def parseDayCheckboxes(checkbox_names, col_num):
     for checkbox_name in checkbox_names:
         if request.form.get(checkbox_name):
             row_num = int(checkbox_name.split("_")[1])
             free_hours.addBusyHour(row_num, col_num)
     #iterate through every day of week
-    
-
+   
 
 if __name__ == "__main__":
     
