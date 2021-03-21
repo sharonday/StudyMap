@@ -9,13 +9,14 @@ app = Flask(__name__)
 app.secret_key = b"20072012f35b38f51c782e21b478395891bb6be23a61d70a"
 
 datastore_client = datastore.Client("studymap-307201")
+free_hours = Schedule(5, 24) #True = busy hours & False = free hours
 
 # Route to Home Page
 @app.route("/")
 def home():
     print("Home")
     current_user = get_current_user()
-    print(current_user)
+    print("CURRENT USER: " + str(current_user))
     return render_template("index.html", user=current_user)
 
 # Route to Login Page
@@ -134,14 +135,21 @@ def logout():
     # redirects to Home Page
     return("/")
 
-
+@app.route("/add-schedule/", methods=["POST"])
 #gets the busy hours for a user
 def get_busy_hours():
-    schedule = Schedule(5, 24)  
-    #iterate through every day of week
-    mon_hours = generateScheduleID("MON", 0, 24)
+        mon_hours = generateScheduleID("MON", 0, 24)
+        parseDayCheckboxes(mon_hours, 1)
 
+def parseDayCheckboxes(checkbox_names, col_num):
+    for checkbox_name in checkbox_names:
+        if request.form.get(checkbox_name):
+            row_num = int(checkbox_name.split("_")[1])
+            free_hours.addBusyHour(row_num, col_num)
+    #iterate through every day of week
     
+
+
 if __name__ == "__main__":
     
     app.run(host='127.0.0.1', port=5000, debug=True) 
