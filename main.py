@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.secret_key = b"20072012f35b38f51c782e21b478395891bb6be23a61d70a"
 
 datastore_client = datastore.Client("studymap-307201")
-free_hours = Schedule(5, 24) #True = busy hours & False = free hours
+free_hours = Schedule(7, 24) #True = busy hours & False = free hours
 
 # Route to Home Page
 @app.route("/")
@@ -135,33 +135,31 @@ def logout():
     # redirects to Home Page
     return("/")
 
-@app.route("/add-schedule/", methods=["POST"])
 #gets the busy hours for a user
+@app.route("/add-schedule/", methods=["POST"])
 def get_busy_hours():
         sun_hours = generateScheduleID("SUN", 0, 24)
-        mon_hours = generateScheduleID("MON", 0, 24)
-        tue_hours = generateScheduleID("TUES", 0, 24)
-        wed_hours = generateScheduleID("WED", 0, 24)
-        thu_hours = generateScheduleID("THURS", 0, 24)
-        fri_hours = generateScheduleID("FRI", 0, 24)
-        sat_hours = generateScheduleID("SAT", 0, 24)
-        
-        #parse the day based on the column index 
         parseDayCheckboxes(sun_hours, 0)
+        mon_hours = generateScheduleID("MON", 0, 24)
         parseDayCheckboxes(mon_hours, 1)
+        tue_hours = generateScheduleID("TUES", 0, 24)
         parseDayCheckboxes(tue_hours, 2)
+        wed_hours = generateScheduleID("WED", 0, 24)
         parseDayCheckboxes(wed_hours, 3)
+        thu_hours = generateScheduleID("THURS", 0, 24)
         parseDayCheckboxes(thu_hours, 4)
+        fri_hours = generateScheduleID("FRI", 0, 24)
         parseDayCheckboxes(fri_hours, 5)
+        sat_hours = generateScheduleID("SAT", 0, 24)
         parseDayCheckboxes(sat_hours, 6)
+        print(free_hours.returnSchedule())
+        return redirect("/")    
         
 def parseDayCheckboxes(checkbox_names, col_num):
     for checkbox_name in checkbox_names:
         if request.form.get(checkbox_name):
             row_num = int(checkbox_name.split("_")[1])
             free_hours.addBusyHour(row_num, col_num)
-    #iterate through every day of week
-   
 
 if __name__ == "__main__":
     
