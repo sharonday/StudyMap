@@ -3,6 +3,7 @@ from google.cloud import datastore
 
 from user import User
 from course import Course, Assignment
+from schedule import Schedule, generateScheduleID
 
 app = Flask(__name__)
 app.secret_key = b"20072012f35b38f51c782e21b478395891bb6be23a61d70a"
@@ -134,7 +135,15 @@ def logout():
     return("/")
 
 
+#gets the busy hours for a user
+def get_busy_hours():
+    schedule = Schedule(5, 24)  
+    #iterate through every day of week
+    mon_hours = generateScheduleID("MON", 0, 24)
+
+    
 if __name__ == "__main__":
+    
     app.run(host='127.0.0.1', port=5000, debug=True) 
 
     # python3 main.py  to run it
