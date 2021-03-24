@@ -11,10 +11,38 @@
 
 
 <body>
+  <!-- A grey horizontal navbar that becomes vertical on small screens -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#">StudyMap</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">How To</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/free_hours">Add Schedule</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/course">Add Course</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/assignment">Add Assignment</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/login">Login</a>
+    </li>
+
+  </ul>
+
+</nav>
+
     <main class = "mid">
         <header class = "top">
         <h1>Welcome to StudyMap</h1>
-            
+
         </header>
         <div id = "add">
             <h2>Add Assignments</h2>
@@ -39,7 +67,7 @@
                 </p>
             </form>
             <script>
-                function assignment() 
+                function assignment()
                 {
                     var hwname = document.getElementById("hwname").value;
                     var hwdate = document.getElementById("hwdate").value;
