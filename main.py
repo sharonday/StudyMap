@@ -105,7 +105,6 @@ def enter_assignments():
     user = session.get("user", None)
     new_assign = Assignment(assign_name, assign_date, assign_course, assign_hours, user)
     new_assign.store_assignment(datastore_client)
-    get_assignments()
     return redirect("/")
 
 # get the current user's courses
@@ -114,8 +113,8 @@ def get_courses():
     user = session.get("user", None)
     q.add_filter("user", "=", user)
     courses = q.fetch()
-    #print(list(courses))
-    return list(courses)
+    results = list(courses)
+    return results
 
 # get the current user's assignments
 def get_assignments():
@@ -123,8 +122,9 @@ def get_assignments():
     user = session.get("user", None)
     q.add_filter("user", "=", user)
     assign = q.fetch()
+    results = list(assign)
     #print(list(assign))
-    return list(assign)
+    return results
 
 # Logs the user out
 @app.route("/logout-user/")
