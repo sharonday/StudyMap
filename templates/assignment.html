@@ -20,7 +20,9 @@
             <h2 class="center-headings-course">Add Assignments</h2>
             <form id = "assignments" action= "/add-assignment/" method = "POST">
                 <p>
-
+                    {% if courses|length == 0 %} 
+                     <p style="color:red">Please Enter Courses First!</p>
+                    {% endif %}
                     <label>Assignment Name</label>
                     <input type = "text" name = "hwname">
                 </p>
@@ -29,7 +31,11 @@
                     <input type = "date" name = "hwdate">
                 </p>
                     <label>What course is this for?</label>
-                    <input type = "text" name = "hwcourse">
+                    <select name="hwcourse">
+                         {% for c in courses %}               
+                         <option value="{{c}}">{{c}}</option>
+                         {% endfor %}
+                     </select>  
                 <p>
                     <label>Estimated Work Time (Hours)</label>
                     <input type = "number" min="1" name = "hours">
