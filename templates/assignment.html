@@ -51,11 +51,11 @@
                      <p style="color:red">Please Enter Courses First!</p>
                     {% endif %}
                     <label>Assignment Name</label>
-                    <input type = "text" name = "hwname">
+                    <input type = "text" name = "hwname" required>
                 </p>
                 <p>
                     <label>Due Date</label>
-                    <input type = "date" name = "hwdate">
+                    <input type = "date" name = "hwdate" required>
                 </p>
                     <label>What course is this for?</label>
                     <select name="hwcourse">
@@ -65,14 +65,14 @@
                      </select>  
                 <p>
                     <label>Estimated Work Time (Hours)</label>
-                    <input type = "number" min="1" name = "hours">
+                    <input type = "number" min="1" name = "hours" required>
                 </p>
                 <p>
                     <input type="submit" value = "submit">
                 </p>
             </form>
             <script>
-               function displayinfo(){
+               /*function displayinfo(){
 
                 
                         var form = document.getElementById('assignments');
@@ -88,7 +88,7 @@
 
                         document.getElementById("assignments").addEventListener('click', displayinfo);
 
-                }
+                }*/
             </script>
         </div>
     </main>
