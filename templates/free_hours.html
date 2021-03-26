@@ -1,6 +1,7 @@
 <!-- TODO: add Sat/Sunday and add button -->
 <!DOCTYPE html>
 <html>
+
 <form id = "course" action = "/add-schedule/" method = "POST">
   <table style="width:100%">
       <tr>
@@ -19,245 +20,399 @@
           <th></th>
           <th></th>
           <th></th>
+
+        <tr>
+          <th><b>WHOLE DAY</b></th>
+          <th><input onClick="selectAll()" id="1" type="checkbox" name="SUN_999_1"></th>
+          <th><input onClick="selectAll()" id="2" type="checkbox" name="MON_999_1"></th>
+          <th><input onClick="selectAll()" id="3" type="checkbox" name="TUES_999_1"></th>
+          <th><input onClick="selectAll()" id="4" type="checkbox" name="WED_999_1"></th>
+          <th><input onClick="selectAll()" id="5" type="checkbox" name="THURS_999_1"></th>
+          <th><input onClick="selectAll()" id="6" type="checkbox" name="FRI_999_1"></th>
+          <th><input onClick="selectAll()" id="7" type="checkbox" name="SAT_999_1"></th>
+        </tr>
+          
       <tr>
           <th><b>12AM - 1AM</b></th>
-          <th><input type="checkbox" name="SUN_0_1"></th>
-          <th><input type="checkbox" name="MON_0_1"></th>
-          <th><input type="checkbox" name="TUES_0_1"></th>
-          <th><input type="checkbox" name="WED_0_1"></th>
-          <th><input type="checkbox" name="THURS_0_1"></th>
-          <th><input type="checkbox" name="FRI_0_1"></th>
-          <th><input type="checkbox" name="SAT_0_1"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_0_1"></th>
+          <th><input class="checked2" type="checkbox" name="MON_0_1"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_0_1"></th>
+          <th><input class="checked4" type="checkbox" name="WED_0_1"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_0_1"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_0_1"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_0_1"></th>
       </tr>
       <tr>
           <th><b>1AM - 2AM</b></th>
-          <th><input type="checkbox" name="SUN_1_2"></th>
-          <th><input type="checkbox" name="MON_1_2"></th>
-          <th><input type="checkbox" name="TUES_1_2"></th>
-          <th><input type="checkbox" name="WED_1_2"></th>
-          <th><input type="checkbox" name="THURS_1_2"></th>
-          <th><input type="checkbox" name="FRI_1_2"></th>
-          <th><input type="checkbox" name="SAT_1_2"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_1_2"></th>
+          <th><input class="checked2" type="checkbox" name="MON_1_2"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_1_2"></th>
+          <th><input class="checked4" type="checkbox" name="WED_1_2"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_1_2"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_1_2"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_1_2"></th>
       </tr>
       <tr>
           <th><b>2AM - 3AM</b></th>
-          <th><input type="checkbox" name="SUN_2_3"></th>
-      	  <th><input type="checkbox" name="MON_2_3"></th>
-          <th><input type="checkbox" name="TUES_2_3"></th>
-          <th><input type="checkbox" name="WED_2_3"></th>
-          <th><input type="checkbox" name="THURS_2_3"></th>
-          <th><input type="checkbox" name="FRI_2_3"></th>
-          <th><input type="checkbox" name="SAT_2_3"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_2_3"></th>
+      	  <th><input class="checked2" type="checkbox" name="MON_2_3"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_2_3"></th>
+          <th><input class="checked4" type="checkbox" name="WED_2_3"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_2_3"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_2_3"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_2_3"></th>
     </tr>
     <tr>
           <th><b>3AM - 4AM</b></th>
-          <th><input type="checkbox" name="SUN_3_4"></th>
-    	  <th><input type="checkbox" name="MON_3_4"></th>
-          <th><input type="checkbox" name="TUES_3_4"></th>
-          <th><input type="checkbox" name="WED_3_4"></th>
-          <th><input type="checkbox" name="THURS_3_4"></th>
-          <th><input type="checkbox" name="FRI_3_4"></th>
-          <th><input type="checkbox" name="SAT_3_4"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_3_4"></th>
+    	  <th><input class="checked2" type="checkbox" name="MON_3_4"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_3_4"></th>
+          <th><input class="checked4" type="checkbox" name="WED_3_4"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_3_4"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_3_4"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_3_4"></th>
     </tr>
     <tr>
           <th><b>4AM - 5AM</b></th>
-          <th><input type="checkbox" name="SUN_4_5"></th>
-    	  <th><input type="checkbox" name="MON_4_5"></th>
-          <th><input type="checkbox" name="TUES_4_5"></th>
-          <th><input type="checkbox" name="WED_4_5"></th>
-          <th><input type="checkbox" name="THURS_4_5"></th>
-          <th><input type="checkbox" name="FRI_4_5"></th>
-          <th><input type="checkbox" name="SAT_4_5"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_4_5"></th>
+    	  <th><input class="checked2" type="checkbox" name="MON_4_5"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_4_5"></th>
+          <th><input class="checked4" type="checkbox" name="WED_4_5"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_4_5"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_4_5"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_4_5"></th>
     </tr>
           <th><b>5AM - 6AM</b></th>
-          <th><input type="checkbox" name="SUN_5_6"></th>
-          <th><input type="checkbox" name="MON_5_6"></th>
-          <th><input type="checkbox" name="TUES_5_6"></th>
-          <th><input type="checkbox" name="WED_5_6"></th>
-          <th><input type="checkbox" name="THURS_5_6"></th>
-          <th><input type="checkbox" name="FRI_5_6"></th>
-          <th><input type="checkbox" name="SAT_5_6"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_5_6"></th>
+          <th><input class="checked2" type="checkbox" name="MON_5_6"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_5_6"></th>
+          <th><input class="checked4" type="checkbox" name="WED_5_6"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_5_6"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_5_6"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_5_6"></th>
     <tr>
           <th><b>6AM - 7AM</b></th>
-          <th><input type="checkbox" name="SUN_6_7"></th>
-          <th><input type="checkbox" name="MON_6_7"></th>
-          <th><input type="checkbox" name="TUES_6_7"></th>
-          <th><input type="checkbox" name="WED_6_7"></th>
-          <th><input type="checkbox" name="THURS_6_7"></th>
-          <th><input type="checkbox" name="FRI_6_7"></th>
-          <th><input type="checkbox" name="SAT_6_7"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_6_7"></th>
+          <th><input class="checked2" type="checkbox" name="MON_6_7"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_6_7"></th>
+          <th><input class="checked4" type="checkbox" name="WED_6_7"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_6_7"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_6_7"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_6_7"></th>
     </tr>
     <tr>
           <th><b>7AM - 8AM</b></th>
-          <th><input type="checkbox" name="SUN_7_8"></th>
-          <th><input type="checkbox" name="MON_7_8"></th>
-          <th><input type="checkbox" name="TUES_7_8"></th>
-          <th><input type="checkbox" name="WED_7_8"></th>
-          <th><input type="checkbox" name="THURS_7_8"></th>
-          <th><input type="checkbox" name="FRI_7_8"></th>
-          <th><input type="checkbox" name="SAT_7_8"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_7_8"></th>
+          <th><input class="checked2" type="checkbox" name="MON_7_8"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_7_8"></th>
+          <th><input class="checked4" type="checkbox" name="WED_7_8"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_7_8"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_7_8"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_7_8"></th>
     </tr>
     <tr>
           <th><b>8AM - 9AM</b></th>
-          <th><input type="checkbox" name="SUN_8_9"></th>
-     	  <th><input type="checkbox" name="MON_8_9"></th>
-          <th><input type="checkbox" name="TUES_8_9"></th>
-          <th><input type="checkbox" name="WED_8_9"></th>
-          <th><input type="checkbox" name="THURS_8_9"></th>
-          <th><input type="checkbox" name="FRI_8_9"></th>
-          <th><input type="checkbox" name="SAT_8_9"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_8_9"></th>
+     	  <th><input class="checked2" type="checkbox" name="MON_8_9"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_8_9"></th>
+          <th><input class="checked4" type="checkbox" name="WED_8_9"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_8_9"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_8_9"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_8_9"></th>
     </tr>
     <tr>
           <th><b>9AM - 10AM</b></th>
-          <th><input type="checkbox" name="SUN_9_10"></th>
-    	  <th><input type="checkbox" name="MON_9_10"></th>
-          <th><input type="checkbox" name="TUES_9_10"></th>
-          <th><input type="checkbox" name="WED_9_10"></th>
-          <th><input type="checkbox" name="THURS_9_10"></th>
-          <th><input type="checkbox" name="FRI_9_10"></th>
-          <th><input type="checkbox" name="SAT_9_10"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_9_10"></th>
+    	  <th><input class="checked2" type="checkbox" name="MON_9_10"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_9_10"></th>
+          <th><input class="checked4" type="checkbox" name="WED_9_10"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_9_10"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_9_10"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_9_10"></th>
     </tr>
     <tr>
           <th><b>10AM - 11AM</b></th>
-          <th><input type="checkbox" name="SUN_10_11"></th>
-     	  <th><input type="checkbox" name="MON_10_11"></th>
-          <th><input type="checkbox" name="TUES_10_11"></th>
-          <th><input type="checkbox" name="WED_10_11"></th>
-          <th><input type="checkbox" name="THURS_10_11"></th>
-          <th><input type="checkbox" name="FRI_10_11"></th>
-          <th><input type="checkbox" name="SAT_10_11"></th>
+          <th><input class="checked1" type="checkbox" name="SUN_10_11"></th>
+     	  <th><input class="checked2" type="checkbox" name="MON_10_11"></th>
+          <th><input class="checked3" type="checkbox" name="TUES_10_11"></th>
+          <th><input class="checked4" type="checkbox" name="WED_10_11"></th>
+          <th><input class="checked5" type="checkbox" name="THURS_10_11"></th>
+          <th><input class="checked6" type="checkbox" name="FRI_10_11"></th>
+          <th><input class="checked7" type="checkbox" name="SAT_10_11"></th>
     </tr>
     <tr>
          <th><b>11AM - 12PM</b></th>
-         <th><input type="checkbox" name="SUN_11_12"></th>
-     	 <th><input type="checkbox" name="MON_11_12"></th>
-         <th><input type="checkbox" name="TUES_11_12"></th>
-         <th><input type="checkbox" name="WED_11_12"></th>
-         <th><input type="checkbox" name="THURS_11_12"></th>
-         <th><input type="checkbox" name="FRI_11_12"></th>
-         <th><input type="checkbox" name="SAT_11_12"></th>
+         <th><input class="checked1" type="checkbox" name="SUN_11_12"></th>
+     	 <th><input class="checked2" type="checkbox" name="MON_11_12"></th>
+         <th><input class="checked3" type="checkbox" name="TUES_11_12"></th>
+         <th><input class="checked4" type="checkbox" name="WED_11_12"></th>
+         <th><input class="checked5" type="checkbox" name="THURS_11_12"></th>
+         <th><input class="checked6" type="checkbox" name="FRI_11_12"></th>
+         <th><input class="checked7" type="checkbox" name="SAT_11_12"></th>
     </tr>
     <tr>
         <th><b>12PM - 1PM</b></th>
-        <th><input type="checkbox" name="SUN_12_13"></th>
-     	<th><input type="checkbox" name="MON_12_13"></th>
-        <th><input type="checkbox" name="TUES_12_13"></th>
-        <th><input type="checkbox" name="WED_12_13"></th>
-        <th><input type="checkbox" name="THURS_12_13"></th>
-        <th><input type="checkbox" name="FRI_12_13"></th>
-        <th><input type="checkbox" name="SAT_12_13"></th>
+        <th><input class="checked1" type="checkbox" name="SUN_12_13"></th>
+     	<th><input class="checked2" type="checkbox" name="MON_12_13"></th>
+        <th><input class="checked3" type="checkbox" name="TUES_12_13"></th>
+        <th><input class="checked4" type="checkbox" name="WED_12_13"></th>
+        <th><input class="checked5" type="checkbox" name="THURS_12_13"></th>
+        <th><input class="checked6" type="checkbox" name="FRI_12_13"></th>
+        <th><input class="checked7" type="checkbox" name="SAT_12_13"></th>
     </tr>
     <tr>
         <th><b>1PM - 2PM</b></th>
-        <th><input type="checkbox" name="SUN_13_14"></th>
-     	<th><input type="checkbox" name="MON_13_14"></th>
-        <th><input type="checkbox" name="TUES_13_14"></th>
-        <th><input type="checkbox" name="WED_13_14"></th>
-        <th><input type="checkbox" name="THURS_13_14"></th>
-        <th><input type="checkbox" name="FRI_13_14"></th>
-        <th><input type="checkbox" name="SAT_13_14"></th>
+        <th><input class="checked1" type="checkbox" name="SUN_13_14"></th>
+     	<th><input class="checked2" type="checkbox" name="MON_13_14"></th>
+        <th><input class="checked3" type="checkbox" name="TUES_13_14"></th>
+        <th><input class="checked4" type="checkbox" name="WED_13_14"></th>
+        <th><input class="checked5" type="checkbox" name="THURS_13_14"></th>
+        <th><input class="checked6" type="checkbox" name="FRI_13_14"></th>
+        <th><input class="checked7" type="checkbox" name="SAT_13_14"></th>
     </tr>
     <tr>
         <th><b>2PM - 3PM</b></th>
-        <th><input type="checkbox" name="SUN_14_15"></th>
-     	<th><input type="checkbox" name="MON_14_15"></th>
-        <th><input type="checkbox" name="TUES_14_15"></th>
-        <th><input type="checkbox" name="WED_14_15"></th>
-        <th><input type="checkbox" name="THURS_14_15"></th>
-        <th><input type="checkbox" name="FRI_14_15"></th>
-        <th><input type="checkbox" name="SAT_14_15"></th>
+        <th><input class="checked1" type="checkbox" name="SUN_14_15"></th>
+     	<th><input class="checked2" type="checkbox" name="MON_14_15"></th>
+        <th><input class="checked3" type="checkbox" name="TUES_14_15"></th>
+        <th><input class="checked4" type="checkbox" name="WED_14_15"></th>
+        <th><input class="checked5" type="checkbox" name="THURS_14_15"></th>
+        <th><input class="checked6" type="checkbox" name="FRI_14_15"></th>
+        <th><input class="checked7" type="checkbox" name="SAT_14_15"></th>
     </tr>
     <tr>
         <th><b>3PM - 4PM</b></th>
-        <th><input type="checkbox" name="SUN_15_16"></th>
-     	<th><input type="checkbox" name="MON_15_16"></th>
-        <th><input type="checkbox" name="TUES_15_16"></th>
-        <th><input type="checkbox" name="WED_15_16"></th>
-        <th><input type="checkbox" name="THURS_15_16"></th>
-        <th><input type="checkbox" name="FRI_15_16"></th>
-        <th><input type="checkbox" name="SAT_15_16"></th>
+        <th><input class="checked1" type="checkbox" name="SUN_15_16"></th>
+     	<th><input class="checked2" type="checkbox" name="MON_15_16"></th>
+        <th><input class="checked3" type="checkbox" name="TUES_15_16"></th>
+        <th><input class="checked4" type="checkbox" name="WED_15_16"></th>
+        <th><input class="checked5" type="checkbox" name="THURS_15_16"></th>
+        <th><input class="checked6" type="checkbox" name="FRI_15_16"></th>
+        <th><input class="checked7" type="checkbox" name="SAT_15_16"></th>
     </tr>
     <tr>
        <th><b>4PM - 5PM</b></th>
-       <th><input type="checkbox" name="SUN_16_17"></th>
-       <th><input type="checkbox" name="MON_16_17"></th>
-       <th><input type="checkbox" name="TUES_16_17"></th>
-       <th><input type="checkbox" name="WED_16_17"></th>
-       <th><input type="checkbox" name="THURS_16_17"></th>
-       <th><input type="checkbox" name="FRI_16_17"></th>
-       <th><input type="checkbox" name="SAT_16_17"></th>
+       <th><input class="checked1" type="checkbox" name="SUN_16_17"></th>
+       <th><input class="checked2" type="checkbox" name="MON_16_17"></th>
+       <th><input class="checked3" type="checkbox" name="TUES_16_17"></th>
+       <th><input class="checked4" type="checkbox" name="WED_16_17"></th>
+       <th><input class="checked5" type="checkbox" name="THURS_16_17"></th>
+       <th><input class="checked6" type="checkbox" name="FRI_16_17"></th>
+       <th><input class="checked7" type="checkbox" name="SAT_16_17"></th>
     </tr>
     <tr>
        <th><b>5PM - 6PM</b></th>
-       <th><input type="checkbox" name="SUN_17_18"></th>
-       <th><input type="checkbox" name="MON_17_18"></th>
-       <th><input type="checkbox" name="TUES 17_18"></th>
-       <th><input type="checkbox" name="WED_17_18"></th>
-       <th><input type="checkbox" name="THURS_17_18"></th>
-       <th><input type="checkbox" name="FRI_17_18"></th>
-       <th><input type="checkbox" name="SAT_17_18"></th>
+       <th><input class="checked1" type="checkbox" name="SUN_17_18"></th>
+       <th><input class="checked2" type="checkbox" name="MON_17_18"></th>
+       <th><input class="checked3" type="checkbox" name="TUES 17_18"></th>
+       <th><input class="checked4" type="checkbox" name="WED_17_18"></th>
+       <th><input class="checked5" type="checkbox" name="THURS_17_18"></th>
+       <th><input class="checked6" type="checkbox" name="FRI_17_18"></th>
+       <th><input class="checked7" type="checkbox" name="SAT_17_18"></th>
     </tr>
     <tr>
       <th><b>6PM - 7PM</b></th>
-      <th><input type="checkbox" name="SUN_18_19"></th>
-      <th><input type="checkbox" name="MON_18_19"></th>
-      <th><input type="checkbox" name="TUES_18_19"></th>
-      <th><input type="checkbox" name="WED_18_19"></th>
-      <th><input type="checkbox" name="THURS_18_19"></th>
-      <th><input type="checkbox" name="FRI_18_19"></th>
-      <th><input type="checkbox" name="SAT_18_19"></th>
+      <th><input class="checked1" type="checkbox" name="SUN_18_19"></th>
+      <th><input class="checked2" type="checkbox" name="MON_18_19"></th>
+      <th><input class="checked3" type="checkbox" name="TUES_18_19"></th>
+      <th><input class="checked4" type="checkbox" name="WED_18_19"></th>
+      <th><input class="checked5" type="checkbox" name="THURS_18_19"></th>
+      <th><input class="checked6" type="checkbox" name="FRI_18_19"></th>
+      <th><input class="checked7" type="checkbox" name="SAT_18_19"></th>
     </tr>
     <tr>
       <th><b>7PM - 8PM</b></th>
-      <th><input type="checkbox" name="SUN_19_20"></th>
-      <th><input type="checkbox" name="MON_19_20"></th>
-      <th><input type="checkbox" name="TUES_19_20"></th>
-      <th><input type="checkbox" name="WED_19_20"></th>
-      <th><input type="checkbox" name="THURS_19_20"></th>
-      <th><input type="checkbox" name="FRI_19_20"></th>
-      <th><input type="checkbox" name="SAT_19_20"></th>
+      <th><input class="checked1" type="checkbox" name="SUN_19_20"></th>
+      <th><input class="checked2" type="checkbox" name="MON_19_20"></th>
+      <th><input class="checked3" type="checkbox" name="TUES_19_20"></th>
+      <th><input class="checked4" type="checkbox" name="WED_19_20"></th>
+      <th><input class="checked5" type="checkbox" name="THURS_19_20"></th>
+      <th><input class="checked6" type="checkbox" name="FRI_19_20"></th>
+      <th><input class="checked7" type="checkbox" name="SAT_19_20"></th>
     </tr>
     <tr>
       <th><b>8PM - 9PM</b></th>
-      <th><input type="checkbox" name="SUN_20_21"></th>
-      <th><input type="checkbox" name="MON_20_21"></th>
-      <th><input type="checkbox" name="TUES_20_21"></th>
-      <th><input type="checkbox" name="WED_20_21"></th>
-      <th><input type="checkbox" name="THURS_20_21"></th>
-      <th><input type="checkbox" name="FRI_20_21"></th>
-      <th><input type="checkbox" name="SAT_20_21"></th>
+      <th><input class="checked1" type="checkbox" name="SUN_20_21"></th>
+      <th><input class="checked2" type="checkbox" name="MON_20_21"></th>
+      <th><input class="checked3" type="checkbox" name="TUES_20_21"></th>
+      <th><input class="checked4" type="checkbox" name="WED_20_21"></th>
+      <th><input class="checked5" type="checkbox" name="THURS_20_21"></th>
+      <th><input class="checked6" type="checkbox" name="FRI_20_21"></th>
+      <th><input class="checked7" type="checkbox" name="SAT_20_21"></th>
     </tr>
     <tr>
       <th><b>9PM - 10PM</b></th>
-      <th><input type="checkbox" name="SUN_21_22"></th>
-      <th><input type="checkbox" name="MON_21_22"></th>
-      <th><input type="checkbox" name="TUES_21_22"></th>
-      <th><input type="checkbox" name="WED_21_22"></th>
-      <th><input type="checkbox" name="THURS_21_22"></th>
-      <th><input type="checkbox" name="FRI_21_22"></th>
-      <th><input type="checkbox" name="SAT_21_22"></th>
+      <th><input class="checked1" type="checkbox" name="SUN_21_22"></th>
+      <th><input class="checked2" type="checkbox" name="MON_21_22"></th>
+      <th><input class="checked3" type="checkbox" name="TUES_21_22"></th>
+      <th><input class="checked4" type="checkbox" name="WED_21_22"></th>
+      <th><input class="checked5" type="checkbox" name="THURS_21_22"></th>
+      <th><input class="checked6" type="checkbox" name="FRI_21_22"></th>
+      <th><input class="checked7" type="checkbox" name="SAT_21_22"></th>
     </tr>
     <tr>
       <th><b>10PM - 11PM</b></th>
-      <th><input type="checkbox" name="SUN_22_23"></th>
-      <th><input type="checkbox" name="MON_22_23"></th>
-      <th><input type="checkbox" name="TUES_22_23"></th>
-      <th><input type="checkbox" name="WED_22_23"></th>
-      <th><input type="checkbox" name="THURS_22_23"></th>
-      <th><input type="checkbox" name="FRI_22_23"></th>
-      <th><input type="checkbox" name="SAT_22_23"></th>      
+      <th><input class="checked1" type="checkbox" name="SUN_22_23"></th>
+      <th><input class="checked2" type="checkbox" name="MON_22_23"></th>
+      <th><input class="checked3" type="checkbox" name="TUES_22_23"></th>
+      <th><input class="checked4" type="checkbox" name="WED_22_23"></th>
+      <th><input class="checked5" type="checkbox" name="THURS_22_23"></th>
+      <th><input class="checked6" type="checkbox" name="FRI_22_23"></th>
+      <th><input class="checked7" type="checkbox" name="SAT_22_23"></th>      
     </tr>
     <tr>
       <th><b>11PM - 12AM</b></th>
-      <th><input type="checkbox" name="SUN_23_24"></th>
-      <th><input type="checkbox" name="MON_23_24"></th>
-      <th><input type="checkbox" name="TUES_23_24"></th>
-      <th><input type="checkbox" name="WED_23_24"></th>
-      <th><input type="checkbox" name="THURS_23_24"></th>
-      <th><input type="checkbox" name="FRI_23_24"></th>
-      <th><input type="checkbox" name="SAT_23_24"></th>
+      <th><input class="checked1" type="checkbox" name="SUN_23_24"></th>
+      <th><input class="checked2" type="checkbox" name="MON_23_24"></th>
+      <th><input class="checked3" type="checkbox" name="TUES_23_24"></th>
+      <th><input class="checked4" type="checkbox" name="WED_23_24"></th>
+      <th><input class="checked5" type="checkbox" name="THURS_23_24"></th>
+      <th><input class="checked6" type="checkbox" name="FRI_23_24"></th>
+      <th><input class="checked7" type="checkbox" name="SAT_23_24"></th>
     </tr>
+
+    <script>
+    const id1 = document.getElementById('1');
+var sunday = document.getElementsByClassName("checked1");
+const id2 = document.getElementById('2');
+var monday = document.getElementsByClassName("checked2");
+const id3 = document.getElementById('3');
+var tuesday = document.getElementsByClassName("checked3");
+const id4 = document.getElementById('4');
+var wednesday = document.getElementsByClassName("checked4");
+const id5 = document.getElementById('5');
+var thursday = document.getElementsByClassName("checked5");
+const id6 = document.getElementById('6');
+var friday = document.getElementsByClassName("checked6");
+const id7 = document.getElementById('7');
+var saturday = document.getElementsByClassName("checked7");
+
+console.log(id1.checked)
+function selectAll() {
+if (id1.checked == true) {
+	console.log("true")
+ 	var items = sunday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = true;
+  }
+  
+}
+if (id1.checked == false) {
+	console.log("false")
+  var items = sunday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = false;
+  }
+
+  
+}
+if (id2.checked == true) {
+	console.log("true")
+ 	var items = monday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = true;
+  }
+  
+}
+if (id2.checked == false) {
+	console.log("false")
+  var items = monday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = false;
+  }
+
+  
+}
+if (id3.checked == true) {
+	console.log("true")
+ 	var items = tuesday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = true;
+  }
+  
+}
+if (id3.checked == false) {
+	console.log("false")
+  var items = tuesday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = false;
+  }
+
+  
+}
+if (id4.checked == true) {
+	console.log("true")
+ 	var items = wednesday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = true;
+  }
+  
+}
+if (id4.checked == false) {
+	console.log("false")
+  var items = wednesday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = false;
+  }
+
+  
+}
+if (id5.checked == true) {
+	console.log("true")
+ 	var items = thursday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = true;
+  }
+  
+}
+if (id5.checked == false) {
+	console.log("false")
+  var items = thursday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = false;
+  }
+
+  
+}
+if (id6.checked == true) {
+	console.log("true")
+ 	var items = friday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = true;
+  }
+  
+}
+if (id6.checked == false) {
+	console.log("false")
+  var items = friday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = false;
+  }
+
+  
+}
+if (id7.checked == true) {
+	console.log("true")
+ 	var items = saturday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = true;
+  }
+  
+}
+if (id7.checked == false) {
+	console.log("false")
+  var items = saturday;
+  for (var i=0; i < items.length; i++) {
+    items[i].checked = false;
+  }
+  
+}
+}
+    
+    </script>
+    
   </table>
   <input type="submit" name="submit" value="Submit">
   </form>
 </html>
+
