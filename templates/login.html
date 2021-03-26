@@ -4,6 +4,34 @@
     <link href="/static/style.css" rel="stylesheet">
 </head>
     <body class="login-page">
+      <!-- A grey horizontal navbar that becomes vertical on small screens -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+      <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">StudyMap</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">How To</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/free_hours">Add Schedule</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/course">Add Course</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/assignment">Add Assignment</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+
+      </ul>
+
+    </nav>
+
     <div class="login-box">
     <img src="/static/avatar.png" class="avatar">
         <h1 class="login-header">Login</h1>
@@ -17,13 +45,13 @@
             <p>Password</p>
             <input type="password" name="password" placeholder="Enter Password" required>
             <input type="submit" name="submit" value="Login">
-             
+
         </form>
-        
+
         <input type="submit" name="gotosignup" value="Sign-Up" onclick="location.href='/signup'">
-            
-        
+
+
         </div>
-    
+
     </body>
 </html>

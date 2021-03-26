@@ -42,7 +42,10 @@ def course_page():
 # Route to Add Assignments Page
 @app.route("/assignment")
 def assignment_page():
-    return render_template("assignment.html", error=[])
+    output = get_courses()
+    course_names = [ x["name"] for x in output]
+    print(course_names)
+    return render_template("assignment.html", courses=course_names, error=[])
 
 # Gets the username of the current user if they are signed in
 def get_current_user():
@@ -115,8 +118,7 @@ def get_courses():
     user = session.get("user", None)
     q.add_filter("user", "=", user)
     courses = q.fetch()
-    #print(list(courses))
-    return list(courses)
+    return courses
 
 # get the current user's assignments
 def get_assignments():
@@ -124,8 +126,9 @@ def get_assignments():
     user = session.get("user", None)
     q.add_filter("user", "=", user)
     assign = q.fetch()
+    results = list(assign)
     #print(list(assign))
-    return list(assign)
+    return assign
 
 # Logs the user out
 @app.route("/logout-user/")
