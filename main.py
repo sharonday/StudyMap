@@ -47,6 +47,11 @@ def assignment_page():
     print(course_names)
     return render_template("assignment.html", courses=course_names, error=[])
 
+# Route to Workspace Page
+@app.route("/workspace")
+def workspace_page():
+    return render_template("workspace.html", error=[])
+
 # Gets the username of the current user if they are signed in
 def get_current_user():
     return session.get("user", None)

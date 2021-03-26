@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../static/style.css" type = "text/css" rel="stylesheet"/>
+    <title>StudyMap</title>
+</head>
+
+<body>
+    <main class = "mid">
+        <header class = "top">
+        <h1 class = "center">Welcome to your Workspace!</h1>
+    </header>
+    <div id = "clock">
+            <form id= "time">
+                <p>
+                    <label>Enter Working Time:</label>
+                </p>
+            
+                <p>
+                    <label>Enter Hours</label>
+                        <input type = "text" name = "hours">
+                    <label>Enter Minutes?</label>
+                        <input type= "text" name = "minute">
+                    
+                    <input type = "button" id = "submit" value ="Start Timer">
+                </p>
+
+
+            </form>
+        
+        </div>
+                <script>
+
+                    function setClock(finalDate){
+
+                        let addTo = document.getElementById("clock");
+
+                        let timeInterval = setInterval(() => {
+                            var now = new Date().getTime();
+                            var dist = finalDate - now;
+                            
+
+                            var hours = Math.floor(dist  % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+                            var minutes = Math.floor(dist % ( 1000 * 60 * 60) / (1000 * 60));
+                            var seconds = Math.floor(dist % (1000 * 60) / 1000);
+
+                            addTo.innerHTML = hours + " h " + minutes + " m " + seconds + " s remaining ";
+
+                            if(dist <= 0){
+                                addTo.innerHTML = "Work Session Complete!";
+                                clearInterval(timeInterval)
+                            }
+                        }, 1000);
+                    }
+
+
+                    function getTime(){
+                        
+                        //get work time from the form
+                        var form = document.getElementById("time");
+                        var hours = form.elements['hours'].value;
+                        var minutes = form.elements['minute'].value;
+                        var num1 = parseInt(hours);
+                        var num2 = parseInt(minutes);
+                     
+                        //convert hour minute format to milliseconds
+                        var curTime = num1 * (3600 * 1000) + num2 * (60 * 1000);
+                        
+                        //calculate final date
+                        var now = new Date().getTime();
+                        const finalDate = now + curTime;
+                        
+                        // set up clock
+                       setClock(finalDate);
+
+                        
+                    }
+
+                    
+
+                    window.onload = () => {
+                        document.getElementById("submit").addEventListener('click', getTime);
+                    }
+
+                </script>
+
+
+
+
+
+
+
+
+
+
+        </main>
+</body>
+
+
+</html>
