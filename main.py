@@ -145,7 +145,7 @@ def logout():
 
 #gets the busy hours for a user
 @app.route("/add-schedule/", methods=["POST"])
-def get_busy_hours():
+def enter_schedule():
         sun_hours = generateScheduleID("SUN", 0, 24)
         parseDayCheckboxes(sun_hours, 0)
         mon_hours = generateScheduleID("MON", 0, 24)
