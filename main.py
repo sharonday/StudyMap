@@ -42,7 +42,7 @@ def course_page():
 # Route to Add Assignments Page
 @app.route("/assignment")
 def assignment_page():
-    output = get_courses()
+    output = get_courses()       
     course_names = [ x["name"] for x in output]
     print(course_names)
     return render_template("assignment.html", courses=course_names, error=[])
