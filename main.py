@@ -4,6 +4,7 @@ from google.cloud import datastore
 from user import User
 from course import Course, Assignment
 from schedule import Schedule, generateScheduleID
+from split_schedule import AssignmentSplitter
 
 app = Flask(__name__)
 app.secret_key = b"20072012f35b38f51c782e21b478395891bb6be23a61d70a"
@@ -108,6 +109,7 @@ def enter_courses():
 # Processes Assignment Info
 @app.route("/add-assignment/", methods=["POST"])
 def enter_assignments():
+    #add assignment to database
     assign_name = request.form.get("hwname")
     assign_date = request.form.get("hwdate")
     assign_course = request.form.get("hwcourse")
@@ -115,6 +117,9 @@ def enter_assignments():
     user = session.get("user", None)
     new_assign = Assignment(assign_name, assign_date, assign_course, assign_hours, user)
     new_assign.store_assignment(datastore_client)
+
+    #split assignments
+    splitter = AssignmentSplitter(get_assignments())
     return redirect("/")
 
 # get the current user's courses
@@ -131,8 +136,6 @@ def get_assignments():
     user = session.get("user", None)
     q.add_filter("user", "=", user)
     assign = q.fetch()
-    results = list(assign)
-    #print(list(assign))
     return assign
 
 # Logs the user out
@@ -170,7 +173,6 @@ def parseDayCheckboxes(checkbox_names, col_num):
             free_hours.addBusyHour(row_num, col_num)
 
 if __name__ == "__main__":
-    
     app.run(host='127.0.0.1', port=5000, debug=True) 
 
     # python3 main.py  to run it
