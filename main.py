@@ -29,9 +29,9 @@ def login_page():
 def signup_page():
     return render_template("signup.html", error=[])
 
-# Route to Sign up Page
+# Route to How To Page
 @app.route("/info")
-def signup_page():
+def info_page():
     return render_template("info.html", error=[])
 
 # Route to Enter Schedule Page
