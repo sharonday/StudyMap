@@ -22,22 +22,26 @@ def home():
 # Route to Login Page
 @app.route("/login")
 def login_page():
-    return render_template("login.html", error=[])
+    current_user = get_current_user()
+    return render_template("login.html", error=[], user=current_user)
 
 # Route to Sign up Page
 @app.route("/signup")
 def signup_page():
-    return render_template("signup.html", error=[])
+    current_user = get_current_user()
+    return render_template("signup.html", error=[], user=current_user)
 
 # Route to Enter Schedule Page
 @app.route("/free_hours")
 def hours_page():
-    return render_template("free_hours.html", error=[])
+    current_user = get_current_user()
+    return render_template("free_hours.html", error=[], user=current_user)
 
 # Route to Add Courses Page
 @app.route("/course")
 def course_page():
-    return render_template("course.html", error=[])
+    current_user = get_current_user()
+    return render_template("course.html", error=[], user=current_user)
 
 # Route to Add Assignments Page
 @app.route("/assignment")
@@ -45,12 +49,14 @@ def assignment_page():
     output = get_courses()
     course_names = [ x["name"] for x in output]
     print(course_names)
-    return render_template("assignment.html", courses=course_names, error=[])
+    current_user = get_current_user()
+    return render_template("assignment.html", courses=course_names, error=[], user=current_user)
 
 # Route to Workspace Page
 @app.route("/workspace")
 def workspace_page():
-    return render_template("workspace.html", error=[])
+    current_user = get_current_user()
+    return render_template("workspace.html", error=[], user=current_user)
 
 # Gets the username of the current user if they are signed in
 def get_current_user():
@@ -100,7 +106,7 @@ def existing_users():
 def enter_courses():
     course_name = request.form.get("course1")
     course_colors = request.form.get("course_colors")
-    user = session.get("user", None)
+    user = get_current_user()
     new_course = Course(course_name, course_colors, user)
     new_course.store_course(datastore_client)
     return redirect("/")    
@@ -112,7 +118,7 @@ def enter_assignments():
     assign_date = request.form.get("hwdate")
     assign_course = request.form.get("hwcourse")
     assign_hours = request.form.get("hours")
-    user = session.get("user", None)
+    user = get_current_user()
     new_assign = Assignment(assign_name, assign_date, assign_course, assign_hours, user)
     new_assign.store_assignment(datastore_client)
     return redirect("/")
@@ -120,7 +126,7 @@ def enter_assignments():
 # get the current user's courses
 def get_courses():
     q = datastore_client.query(kind="Course")
-    user = session.get("user", None)
+    user = get_current_user()
     q.add_filter("user", "=", user)
     courses = q.fetch()
     return courses
@@ -128,7 +134,7 @@ def get_courses():
 # get the current user's assignments
 def get_assignments():
     q = datastore_client.query(kind="Assign")
-    user = session.get("user", None)
+    user = get_current_user()
     q.add_filter("user", "=", user)
     assign = q.fetch()
     results = list(assign)
@@ -141,33 +147,77 @@ def logout():
     # clears session
     session.clear()
     # redirects to Home Page
-    return("/")
+    return redirect("/")
 
+def delete_old_schedule():
+    user = get_current_user()
+    q = datastore_client.query(kind="Free Hours")
+    q.add_filter("user", "=", user)
+    q.keys_only()
+    old_f_hours = q.fetch()
+    for o in old_f_hours:
+        datastore_client.delete(o)
+        
 #gets the busy hours for a user
 @app.route("/add-schedule/", methods=["POST"])
 def enter_schedule():
+        delete_old_schedule()
         sun_hours = generateScheduleID("SUN", 0, 24)
-        parseDayCheckboxes(sun_hours, 0)
+        sun_off = parseDayCheckboxes(sun_hours, 0)
         mon_hours = generateScheduleID("MON", 0, 24)
-        parseDayCheckboxes(mon_hours, 1)
+        mon_off = parseDayCheckboxes(mon_hours, 1)
         tue_hours = generateScheduleID("TUES", 0, 24)
-        parseDayCheckboxes(tue_hours, 2)
+        tue_off = parseDayCheckboxes(tue_hours, 2)
         wed_hours = generateScheduleID("WED", 0, 24)
-        parseDayCheckboxes(wed_hours, 3)
+        wed_off = parseDayCheckboxes(wed_hours, 3)
         thu_hours = generateScheduleID("THURS", 0, 24)
-        parseDayCheckboxes(thu_hours, 4)
+        thu_off = parseDayCheckboxes(thu_hours, 4)
         fri_hours = generateScheduleID("FRI", 0, 24)
-        parseDayCheckboxes(fri_hours, 5)
+        fri_off = parseDayCheckboxes(fri_hours, 5)
         sat_hours = generateScheduleID("SAT", 0, 24)
-        parseDayCheckboxes(sat_hours, 6)
+        sat_off = parseDayCheckboxes(sat_hours, 6)
         print(free_hours.returnSchedule())
+        
+        user = get_current_user()
+        off_days_key = datastore_client.key("Off Days", user)
+        off_days = datastore.Entity(key=off_days_key)
+        off_days["user"] = user
+        off_days["sun"] = sun_off
+        off_days["mon"] = mon_off
+        off_days["tue"] = tue_off
+        off_days["wed"] = wed_off
+        off_days["thu"] = thu_off
+        off_days["fri"] = fri_off
+        off_days["sat"] = sat_off
+        datastore_client.put(off_days)
         return redirect("/")    
         
+def get_days_off():
+    q = datastore_client.query(kind="Off Days")
+    user = get_current_user()
+    q.add_filter("user", "=", user)
+    days_off = q.fetch()
+    return days_off
+
 def parseDayCheckboxes(checkbox_names, col_num):
+    off = True
+    hours =[]
     for checkbox_name in checkbox_names:
         if request.form.get(checkbox_name):
             row_num = int(checkbox_name.split("_")[1])
             free_hours.addBusyHour(row_num, col_num)
+            hours.append(checkbox_name.split("_")[1] + "-" + checkbox_name.split("_")[2])
+            off = False
+
+    user = get_current_user()
+    day = checkbox_name.split("_")[0]
+    f_hours_key = datastore_client.key("Free Hours")
+    f_hours = datastore.Entity(key=f_hours_key)
+    f_hours["user"] = user
+    f_hours["day"] = day
+    f_hours["hours"] = hours
+    datastore_client.put(f_hours)
+    return off
 
 if __name__ == "__main__":
     
