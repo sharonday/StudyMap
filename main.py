@@ -22,26 +22,22 @@ def home():
 # Route to Login Page
 @app.route("/login")
 def login_page():
-    current_user = get_current_user()
-    return render_template("login.html", error=[], user=current_user)
+    return render_template("login.html", error=[])
 
 # Route to Sign up Page
 @app.route("/signup")
 def signup_page():
-    current_user = get_current_user()
-    return render_template("signup.html", error=[], user=current_user)
+    return render_template("signup.html", error=[])
 
 # Route to Enter Schedule Page
 @app.route("/free_hours")
 def hours_page():
-    current_user = get_current_user()
-    return render_template("free_hours.html", error=[], user=current_user)
+    return render_template("free_hours.html", error=[])
 
 # Route to Add Courses Page
 @app.route("/course")
 def course_page():
-    current_user = get_current_user()
-    return render_template("course.html", error=[], user=current_user)
+    return render_template("course.html", error=[])
 
 # Route to Add Assignments Page
 @app.route("/assignment")
@@ -49,14 +45,12 @@ def assignment_page():
     output = get_courses()
     course_names = [ x["name"] for x in output]
     print(course_names)
-    current_user = get_current_user()
-    return render_template("assignment.html", courses=course_names, error=[], user=current_user)
+    return render_template("assignment.html", courses=course_names, error=[])
 
 # Route to Workspace Page
 @app.route("/workspace")
 def workspace_page():
-    current_user = get_current_user()
-    return render_template("workspace.html", error=[], user=current_user)
+    return render_template("workspace.html", error=[])
 
 # Gets the username of the current user if they are signed in
 def get_current_user():
@@ -75,6 +69,7 @@ def login():
         return render_template("login.html", error="Wrong Username or Password.")
     # Makes session with username
     session["user"]=login_info.username
+    session['logged_in'] = True
     # Redirects user to Home Page if Login is successful
     return redirect("/")
 
@@ -149,6 +144,7 @@ def logout():
     # redirects to Home Page
     return redirect("/")
 
+# deletes schedule in db if they enter another
 def delete_old_schedule():
     user = get_current_user()
     q = datastore_client.query(kind="Free Hours")
@@ -178,6 +174,7 @@ def enter_schedule():
         sat_off = parseDayCheckboxes(sat_hours, 6)
         print(free_hours.returnSchedule())
         
+        # store off days to the db
         user = get_current_user()
         off_days_key = datastore_client.key("Off Days", user)
         off_days = datastore.Entity(key=off_days_key)
@@ -190,25 +187,41 @@ def enter_schedule():
         off_days["fri"] = fri_off
         off_days["sat"] = sat_off
         datastore_client.put(off_days)
-        return redirect("/")    
-        
-def get_days_off():
+        return redirect("/")  
+
+# gets the days the user is off      
+def get_days_off():    
     q = datastore_client.query(kind="Off Days")
     user = get_current_user()
     q.add_filter("user", "=", user)
     days_off = q.fetch()
+    # @Nayana and @Caroline
+    # Should get 1 item
+    # To access days off and use in function (put this code in whatever 
+    # function you are using but don't uncomment here)
+    # for d in days_off:
+        #if d["sun"] == True:
+            # sunday is off day
+        #if d['mon'] == True:
+             # monnday is off day
     return days_off
 
 def parseDayCheckboxes(checkbox_names, col_num):
+    # day originally set as "off day"
     off = True
     hours =[]
     for checkbox_name in checkbox_names:
         if request.form.get(checkbox_name):
             row_num = int(checkbox_name.split("_")[1])
             free_hours.addBusyHour(row_num, col_num)
-            hours.append(checkbox_name.split("_")[1] + "-" + checkbox_name.split("_")[2])
+            # if they have available work time, 
+            # it adds the time to the free hours list for that day
+            # and turns the day to a "working day"
+            hours.append(checkbox_name.split("_")[1] + ":00 - " + checkbox_name.split("_")[2]+ ":00")
             off = False
 
+    # after all the free hours for a day are determined,
+    # it is stored to the db
     user = get_current_user()
     day = checkbox_name.split("_")[0]
     f_hours_key = datastore_client.key("Free Hours")
@@ -219,11 +232,24 @@ def parseDayCheckboxes(checkbox_names, col_num):
     datastore_client.put(f_hours)
     return off
 
+# gets user's free_hours
 def get_free_hours():
     q = datastore_client.query(kind="Free Hours")
     user = get_current_user()
     q.add_filter("user", "=", user)
     free_hours = q.fetch()
+    # @Nick
+    # Should get 7 items, one for each day of the week
+    # To access and send free hours to webpage (put this code in whatever 
+    # function you are using but don't uncomment here)
+    # for w in free_hours:
+        #if w["day"] == "SUN":
+            #sun_hours = w["hours"]
+        #elif w["day"] == "MON":
+            #mon_hours = w["hours"]
+        #etc 
+    # the values stored in mon_hours will be an array/list 
+    # of free time slots for that day
     return free_hours
 
 if __name__ == "__main__":
