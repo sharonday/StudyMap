@@ -87,6 +87,7 @@ def create_new_user():
     new_user = User(username, password)
     new_user.store_user(datastore_client)
     session["user"]=new_user.username
+    session['logged_in'] = True
     # Redirects user to Home Page if Sign up is successful
     return redirect("/")    
 
