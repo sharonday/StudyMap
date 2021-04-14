@@ -157,7 +157,7 @@ def delete_old_schedule():
     old_f_hours = q.fetch()
     for o in old_f_hours:
         datastore_client.delete(o)
-        
+
 #gets the busy hours for a user
 @app.route("/add-schedule/", methods=["POST"])
 def enter_schedule():
@@ -218,6 +218,13 @@ def parseDayCheckboxes(checkbox_names, col_num):
     f_hours["hours"] = hours
     datastore_client.put(f_hours)
     return off
+
+def get_free_hours():
+    q = datastore_client.query(kind="Free Hours")
+    user = get_current_user()
+    q.add_filter("user", "=", user)
+    free_hours = q.fetch()
+    return free_hours
 
 if __name__ == "__main__":
     
