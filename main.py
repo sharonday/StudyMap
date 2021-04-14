@@ -204,23 +204,28 @@ def get_days_off():
         #if d["sun"] == True:
             # sunday is off day
         #if d['mon'] == True:
-             # monnday is off day
+             # monday is off day
     return days_off
 
 def parseDayCheckboxes(checkbox_names, col_num):
-    # day originally set as "off day"
-    off = True
+    # day originally set as "working day"
+    off = False
+    bh = 0
     hours =[]
     for checkbox_name in checkbox_names:
         if request.form.get(checkbox_name):
             row_num = int(checkbox_name.split("_")[1])
             free_hours.addBusyHour(row_num, col_num)
+            bh = bh + 1
+        else:
             # if they have available work time, 
             # it adds the time to the free hours list for that day
-            # and turns the day to a "working day"
             hours.append(checkbox_name.split("_")[1] + ":00 - " + checkbox_name.split("_")[2]+ ":00")
-            off = False
 
+    if bh == 24:
+        # day originally set as "off day"
+        print(checkbox_name.split("_")[0])
+        off = True
     # after all the free hours for a day are determined,
     # it is stored to the db
     user = get_current_user()
