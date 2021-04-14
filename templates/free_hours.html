@@ -14,7 +14,7 @@
     <a class="nav-link" href="/">StudyMap</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">How To</a>
+    <a class="nav-link" href="/info">How To</a>
   </li>
   {% if session['logged_in'] %}
   <li class="nav-item">
@@ -41,7 +41,7 @@
 </ul>
 
 </nav>
-  
+
 <form id = "course" action = "/add-schedule/" method = "POST">
   <table style="width:100%">
       <tr>
@@ -71,7 +71,7 @@
           <th><input onClick="selectAll()" id="6" type="checkbox" name="FRI_999_1"></th>
           <th><input onClick="selectAll()" id="7" type="checkbox" name="SAT_999_1"></th>
         </tr>
-          
+
       <tr>
           <th><b>12AM - 1AM</b></th>
           <th><input class="checked1" type="checkbox" name="SUN_0_1"></th>
@@ -298,7 +298,7 @@
       <th><input class="checked4" type="checkbox" name="WED_22_23"></th>
       <th><input class="checked5" type="checkbox" name="THURS_22_23"></th>
       <th><input class="checked6" type="checkbox" name="FRI_22_23"></th>
-      <th><input class="checked7" type="checkbox" name="SAT_22_23"></th>      
+      <th><input class="checked7" type="checkbox" name="SAT_22_23"></th>
     </tr>
     <tr>
       <th><b>11PM - 12AM</b></th>
@@ -335,7 +335,7 @@ if (id1.checked == true) {
   for (var i=0; i < items.length; i++) {
     items[i].checked = true;
   }
-  
+
 }
 if (id1.checked == false) {
 	console.log("false")
@@ -344,7 +344,7 @@ if (id1.checked == false) {
     items[i].checked = false;
   }
 
-  
+
 }
 if (id2.checked == true) {
 	console.log("true")
@@ -352,7 +352,7 @@ if (id2.checked == true) {
   for (var i=0; i < items.length; i++) {
     items[i].checked = true;
   }
-  
+
 }
 if (id2.checked == false) {
 	console.log("false")
@@ -361,7 +361,7 @@ if (id2.checked == false) {
     items[i].checked = false;
   }
 
-  
+
 }
 if (id3.checked == true) {
 	console.log("true")
@@ -369,7 +369,7 @@ if (id3.checked == true) {
   for (var i=0; i < items.length; i++) {
     items[i].checked = true;
   }
-  
+
 }
 if (id3.checked == false) {
 	console.log("false")
@@ -378,7 +378,7 @@ if (id3.checked == false) {
     items[i].checked = false;
   }
 
-  
+
 }
 if (id4.checked == true) {
 	console.log("true")
@@ -386,7 +386,7 @@ if (id4.checked == true) {
   for (var i=0; i < items.length; i++) {
     items[i].checked = true;
   }
-  
+
 }
 if (id4.checked == false) {
 	console.log("false")
@@ -395,7 +395,7 @@ if (id4.checked == false) {
     items[i].checked = false;
   }
 
-  
+
 }
 if (id5.checked == true) {
 	console.log("true")
@@ -403,7 +403,7 @@ if (id5.checked == true) {
   for (var i=0; i < items.length; i++) {
     items[i].checked = true;
   }
-  
+
 }
 if (id5.checked == false) {
 	console.log("false")
@@ -412,7 +412,7 @@ if (id5.checked == false) {
     items[i].checked = false;
   }
 
-  
+
 }
 if (id6.checked == true) {
 	console.log("true")
@@ -420,7 +420,7 @@ if (id6.checked == true) {
   for (var i=0; i < items.length; i++) {
     items[i].checked = true;
   }
-  
+
 }
 if (id6.checked == false) {
 	console.log("false")
@@ -429,7 +429,7 @@ if (id6.checked == false) {
     items[i].checked = false;
   }
 
-  
+
 }
 if (id7.checked == true) {
 	console.log("true")
@@ -437,7 +437,7 @@ if (id7.checked == true) {
   for (var i=0; i < items.length; i++) {
     items[i].checked = true;
   }
-  
+
 }
 if (id7.checked == false) {
 	console.log("false")
@@ -445,14 +445,13 @@ if (id7.checked == false) {
   for (var i=0; i < items.length; i++) {
     items[i].checked = false;
   }
-  
+
 }
 }
-    
+
     </script>
-    
+
   </table>
   <input type="submit" name="submit" value="Submit">
   </form>
 </html>
-
