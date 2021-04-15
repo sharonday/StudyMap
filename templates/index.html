@@ -17,11 +17,12 @@
   <!-- Links -->
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href="#">StudyMap</a>
+      <a class="nav-link" href="/">StudyMap</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">How To</a>
     </li>
+    {% if session['logged_in'] %}
     <li class="nav-item">
       <a class="nav-link" href="/free_hours">Add Schedule</a>
     </li>
@@ -32,7 +33,15 @@
       <a class="nav-link" href="/assignment">Add Assignment</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/workspace">Workspace</a>
+    </li>    
+    {% endif %}
+    <li class="nav-item">
+        {% if session['logged_in'] %}
+            <a class="nav-link" href="/logout-user/">Logout</a>
+        {% else %}
+            <a class="nav-link" href="/login">Login</a>
+        {% endif %}  
     </li>
     
   </ul>
@@ -43,30 +52,51 @@
       <div class="col weekday list">
         <h3 class="list-title">Monday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in mon %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Tuesday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in tues %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Wednesday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in wed %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Thursday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in thurs %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Friday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in fri %}
+          <p>{{ hours }} </p>
+        {% endfor %}
       </div>
       <div class="col weekend list">
         <h3 class="list-title">Saturday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in sat %}
+          <p>{{ hours }} </p>
+        {% endfor %}
       </div>
       <div class="col weekend list">
         <h3 class="list-title">Sunday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in sun %}
+          <p>{{ hours }} </p>
+        {% endfor %}
       </div>
     </div>
   </div>
