@@ -9,20 +9,22 @@ class AssignmentSplitter(object):
         self.day_dict = dict()
         self.off_days = off_days
 
-        if self.off_days['mon'] == True:
-            print("OFF MONDAY")
-        if self.off_days['tues'] == True:
-            print("OFF TUESDAY")
-        if self.off_days['wed'] == True:
-            print("OFF WEDNESDAY")
-        if self.off_days['thurs'] == True:
-            print("OFF THURS")
-        if self.off_days['fri'] == True:
-            print("OFF FRIDAY")
-        if self.off_days['sat'] == True:
-            print("OFF SAT")
-        if self.off_days['sun'] == True:
-            print("OFF SUN")
+        for d in self.off_days:
+            # i would store d['mon'], etc to variables if you need to use it later
+            if d['mon'] == True:
+                print("OFF MONDAY")
+            if d['tue'] == True:
+                print("OFF TUESDAY")
+            if d['wed'] == True:
+                print("OFF WEDNESDAY")
+            if d['thu'] == True:
+                print("OFF THURS")
+            if d['fri'] == True:
+                print("OFF FRIDAY")
+            if d['sat'] == True:
+                print("OFF SAT")
+            if d['sun'] == True:
+                print("OFF SUN")
 
     def split_assignments(self):
         assignments =  np.array([[x['name'], x['course'], x['current_date'], x['due_date'], x['hours'], x['user']] for x in self.assignments])
