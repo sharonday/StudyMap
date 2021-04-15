@@ -144,7 +144,8 @@ def enter_assignments():
     new_assign.store_assignment(datastore_client)
 
     #split assignments
-    splitter = AssignmentSplitter(get_assignments())
+    splitter = AssignmentSplitter(get_assignments(), get_days_off(), get_free_hours())
+    splitter.split_assignments()
     return redirect("/")
 
 # get the current user's courses

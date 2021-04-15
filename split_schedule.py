@@ -1,12 +1,12 @@
 # from main import get_assignments, get_courses
 import numpy as np 
-from datetime import datetime
+from datetime import datetime, date, timedelta
+import pandas as pd
 
 class AssignmentSplitter(object):
-    def __init__(self, assignments):
+    def __init__(self, assignments, off_days, free_hours):
         self.assignments = assignments
         self.day_dict = dict()
-        self.split_assignments()
 
     def split_assignments(self):
         assignments =  np.array([[x['name'], x['course'], x['current_date'], x['due_date'], x['hours'], x['user']] for x in self.assignments])
@@ -20,17 +20,20 @@ class AssignmentSplitter(object):
             full+= ' 11:59:59,76'
             nano = datetime.strptime(full, '%d.%m.%Y %H:%M:%S,%f')
             #determine number of days in between current and due date
-            num_days = nano-curr_date.replace(tzinfo=None)
-            #determine how many off days exist in between current and due date
-            #determine how many actual days exist between the current date and due date
-            #determiner number of hours per day
-            #determine if any days have a greater number of study hours compared to free time
-                # raise warning
-            #add hours per day to dictionary
-            #iterate to next assignment
-        #repeat process for each assignment
-        #return the dictionary for dates and study hours per day
+            num_days = nano.replace(tzinfo=None)-curr_date.replace(tzinfo=None)
+            #determine dates in between current and due date
+            between_days = self.get_between_days(curr_date, num_days)
+            #split assignments
+            
 
+    def get_between_days(self, start_date, delta_days):
+        between_days = []
+        for i in range(delta_days.days + 1):
+            between_day = start_date + timedelta(days=i)
+            between_days.append(between_day)
+        return between_days
+
+        
 
     # Draft time
     # def getTimeBlocks(self, num_hours, num_days):
