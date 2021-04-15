@@ -13,13 +13,14 @@ class AssignmentSplitter(object):
         #TODO: schedule information
         for assignment in assignments:
             name, course, curr_date, due_date, hours, user = assignment
+            #convert due date to NanoDateTime
             #nano takes day, month, year so have to split from year, month, day
-            # x = str(due_date).split("-")
-            # full = x[2] + "." + x[1] + "."+ x[0]
-            # full+= ' 11:59:59,76'
-            # nano = datetime.strptime(full, '%d.%m.%Y %H:%M:%S,%f')
-            # print(nano-curr_date.replace(tzinfo=None))
+            x = str(due_date).split("-")
+            full = x[2] + "." + x[1] + "."+ x[0]
+            full+= ' 11:59:59,76'
+            nano = datetime.strptime(full, '%d.%m.%Y %H:%M:%S,%f')
             #determine number of days in between current and due date
+            num_days = nano-curr_date.replace(tzinfo=None)
             #determine how many off days exist in between current and due date
             #determine how many actual days exist between the current date and due date
             #determiner number of hours per day
