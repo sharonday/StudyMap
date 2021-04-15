@@ -7,10 +7,25 @@ class AssignmentSplitter(object):
     def __init__(self, assignments, off_days, free_hours):
         self.assignments = assignments
         self.day_dict = dict()
+        self.off_days = off_days
+
+        if self.off_days['mon'] == True:
+            print("OFF MONDAY")
+        if self.off_days['tues'] == True:
+            print("OFF TUESDAY")
+        if self.off_days['wed'] == True:
+            print("OFF WEDNESDAY")
+        if self.off_days['thurs'] == True:
+            print("OFF THURS")
+        if self.off_days['fri'] == True:
+            print("OFF FRIDAY")
+        if self.off_days['sat'] == True:
+            print("OFF SAT")
+        if self.off_days['sun'] == True:
+            print("OFF SUN")
 
     def split_assignments(self):
         assignments =  np.array([[x['name'], x['course'], x['current_date'], x['due_date'], x['hours'], x['user']] for x in self.assignments])
-        #TODO: schedule information
         for assignment in assignments:
             name, course, curr_date, due_date, hours, user = assignment
             #convert due date to NanoDateTime
@@ -23,8 +38,8 @@ class AssignmentSplitter(object):
             num_days = nano.replace(tzinfo=None)-curr_date.replace(tzinfo=None)
             #determine dates in between current and due date
             between_days = self.get_between_days(curr_date, num_days)
-            #split assignments
-            
+            #determine any off days
+            #between_days = self.remove_off_days(between_days)
 
     def get_between_days(self, start_date, delta_days):
         between_days = []
@@ -32,7 +47,19 @@ class AssignmentSplitter(object):
             between_day = start_date + timedelta(days=i)
             between_days.append(between_day)
         return between_days
-
+    
+    def remove_off_days(self, dates):
+        day_enum = {'Monday': 'mon',
+                    'Tuesday': 'tues',
+                    'Wednesday': 'wed',
+                    'Thursday': 'thurs',
+                    'Friday': 'fri',
+                    'Saturday': 'sat',
+                    'Sunday': 'sun'}
+        for date in dates:
+            day = date.strftime("%A")
+            if self.off_days[day_enum[day]] == True:
+                print(day + " OFF DAY")
         
 
     # Draft time
