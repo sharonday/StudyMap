@@ -8,6 +8,7 @@ class AssignmentSplitter(object):
         self.assignments = assignments
         self.day_dict = dict()
         self.off_days = self.get_off_days(off_days)
+        self.free_hours = self.get_free_hours(free_hours)
     
     def get_off_days(self, off_days):
         bool_off_days = [False for i in range(7)] #one boolean for each day of week
@@ -29,6 +30,26 @@ class AssignmentSplitter(object):
                 bool_off_days[6] = True
         return bool_off_days
 
+    def get_free_hours(self, free_hours):
+        num_free_hours = [0 for i in range(7)] #assume no hours free in day
+        for d in free_hours:
+            if d["day"] == "SUN":
+                num_free_hours[0] = len(d["hours"])                
+            if d["day"] == "MON":
+                num_free_hours[1] = len(d["hours"])
+            if d["day"] == "TUE":
+                num_free_hours[2] = len(d["hours"])
+            if d["day"] == "WED":
+                num_free_hours[3] = len(d["hours"])
+            if d["day"] == "THU":
+                num_free_hours[4] = len(d["hours"])
+            if d["day"] == "FRI":
+                num_free_hours[5] = len(d["hours"])
+            if d["day"] == "SAT":
+                num_free_hours[6] = len(d["hours"])
+        print(num_free_hours)
+        return num_free_hours
+    
     def split_assignments(self):
         assignments =  np.array([[x['name'], x['course'], x['current_date'], x['due_date'], x['hours'], x['user']] for x in self.assignments])
         for assignment in assignments:
@@ -46,7 +67,7 @@ class AssignmentSplitter(object):
             #determine any off days and remove from the list of dates
             between_days = self.remove_off_days(between_days)
             #split the assignments (return a dictionary that maps (date) --> (hours))
-            self.get_time_per_day(between_days)
+            #self.get_time_per_day(between_days)
 
     def get_between_days(self, start_date, delta_days):
         between_days = []
@@ -71,8 +92,18 @@ class AssignmentSplitter(object):
                 temp_dates.remove(date)
         return temp_dates
     
-    def get_time_per_day(self, between_days):
-        print("HERE")
+    def get_max_hours(self, date):
+        #convert the date to a day
+        day = date.strftime("%A")
+        #lookup value in the free hours
+        
+    
+    # def get_time_per_day(self, between_days, hours, name, course):
+    #     num_days = len(between_days)
+    #     for day in between_days:
+            #print number of hours per day
+
+        #assignment
 
     # Draft time
     # def getTimeBlocks(self, num_hours, num_days):
