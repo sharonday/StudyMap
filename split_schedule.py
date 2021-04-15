@@ -7,24 +7,28 @@ class AssignmentSplitter(object):
     def __init__(self, assignments, off_days, free_hours):
         self.assignments = assignments
         self.day_dict = dict()
-        self.off_days = off_days
-
-        for d in self.off_days:
+        self.off_days = self.get_off_days(off_days)
+    
+    def get_off_days(self, off_days):
+        bool_off_days = [False for i in range(7)] #one boolean for each day of week
+        for d in off_days:
             # i would store d['mon'], etc to variables if you need to use it later
-            if d['mon'] == True:
-                print("OFF MONDAY")
-            if d['tue'] == True:
-                print("OFF TUESDAY")
-            if d['wed'] == True:
-                print("OFF WEDNESDAY")
-            if d['thu'] == True:
-                print("OFF THURS")
-            if d['fri'] == True:
-                print("OFF FRIDAY")
-            if d['sat'] == True:
-                print("OFF SAT")
             if d['sun'] == True:
-                print("OFF SUN")
+                bool_off_days[0] = True
+            if d['mon'] == True:
+                bool_off_days[1] = True
+            if d['tue'] == True:
+                bool_off_days[2] = True
+            if d['wed'] == True:
+                bool_off_days[3] = True
+            if d['thu'] == True:
+                bool_off_days[4] = True
+            if d['fri'] == True:
+                bool_off_days[5] = True
+            if d['sat'] == True:
+                bool_off_days[6] = True
+        print(bool_off_days)
+        return bool_off_days
 
     def split_assignments(self):
         assignments =  np.array([[x['name'], x['course'], x['current_date'], x['due_date'], x['hours'], x['user']] for x in self.assignments])
