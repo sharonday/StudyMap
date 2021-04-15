@@ -27,7 +27,6 @@ class AssignmentSplitter(object):
                 bool_off_days[5] = True
             if d['sat'] == True:
                 bool_off_days[6] = True
-        print(bool_off_days)
         return bool_off_days
 
     def split_assignments(self):
@@ -44,8 +43,10 @@ class AssignmentSplitter(object):
             num_days = nano.replace(tzinfo=None)-curr_date.replace(tzinfo=None)
             #determine dates in between current and due date
             between_days = self.get_between_days(curr_date, num_days)
-            #determine any off days
-            #between_days = self.remove_off_days(between_days)
+            #determine any off days and remove from the list of dates
+            between_days = self.remove_off_days(between_days)
+            #split the assignments (return a dictionary that maps (date) --> (hours))
+            self.get_time_per_day(between_days)
 
     def get_between_days(self, start_date, delta_days):
         between_days = []
@@ -53,20 +54,25 @@ class AssignmentSplitter(object):
             between_day = start_date + timedelta(days=i)
             between_days.append(between_day)
         return between_days
-    
+
     def remove_off_days(self, dates):
-        day_enum = {'Monday': 'mon',
-                    'Tuesday': 'tues',
-                    'Wednesday': 'wed',
-                    'Thursday': 'thurs',
-                    'Friday': 'fri',
-                    'Saturday': 'sat',
-                    'Sunday': 'sun'}
-        for date in dates:
+        temp_dates = dates.copy()
+        day_enum = {"Sunday": 0,
+                    "Monday": 1,
+                    "Tuesday": 2,
+                    "Wednesday": 3,
+                    "Thursday": 4,
+                    "Friday": 5,
+                    "Saturday": 6}
+        for date in temp_dates:
             day = date.strftime("%A")
-            if self.off_days[day_enum[day]] == True:
-                print(day + " OFF DAY")
-        
+            day_index = day_enum[day]
+            if self.off_days[day_index] == True:
+                temp_dates.remove(date)
+        return temp_dates
+    
+    def get_between_days(self, between_days):
+        print("HERE")
 
     # Draft time
     # def getTimeBlocks(self, num_hours, num_days):
