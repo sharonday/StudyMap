@@ -16,8 +16,31 @@ free_hours = Schedule(7, 24) #True = busy hours & False = free hours
 def home():
     print("Home")
     current_user = get_current_user()
+    free_hours = get_free_hours()
+    s_hours = list()
+    m_hours = list()
+    t_hours = list()
+    w_hours = list()
+    th_hours = list()
+    f_hours = list()
+    sat_hours = list()
+    for days in free_hours:
+        if days["day"] == "SUN":
+            s_hours = days["hours"]
+        if days["day"] == "MON":
+            m_hours = days["hours"]
+        if days["day"] == "TUES":
+            t_hours = days["hours"]
+        if days["day"] == "WED":
+            w_hours = days["hours"]
+        if days["day"] == "THURS":
+            th_hours = days["hours"]
+        if days["day"] == "FRI":
+            f_hours = days["hours"]
+        if days["day"] == "SAT":
+            sat_hours = days["hours"]
     print("CURRENT USER: " + str(current_user))
-    return render_template("index.html", user=current_user)
+    return render_template("index.html", user=current_user, sun=s_hours, mon=m_hours,tues=t_hours,wed=s_hours,thurs=th_hours,fri=f_hours,sat=sat_hours)
 
 # Route to Login Page
 @app.route("/login")
