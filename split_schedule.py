@@ -71,7 +71,7 @@ class AssignmentSplitter(object):
                 temp_dates.remove(date)
         return temp_dates
     
-    def get_between_days(self, between_days):
+    def get_time_per_day(self, between_days):
         print("HERE")
 
     # Draft time
