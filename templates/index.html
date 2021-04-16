@@ -20,7 +20,7 @@
       <a class="nav-link" href="/">StudyMap</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">How To</a>
+      <a class="nav-link" href="info">How To</a>
     </li>
     {% if session['logged_in'] %}
     <li class="nav-item">
@@ -34,16 +34,16 @@
     </li>
     <li class="nav-item">
           <a class="nav-link" href="/workspace">Workspace</a>
-    </li>    
+    </li>
     {% endif %}
     <li class="nav-item">
         {% if session['logged_in'] %}
             <a class="nav-link" href="/logout-user/">Logout</a>
         {% else %}
             <a class="nav-link" href="/login">Login</a>
-        {% endif %}  
+        {% endif %}
     </li>
-    
+
   </ul>
 
 </nav>
