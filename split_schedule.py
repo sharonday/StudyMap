@@ -4,6 +4,7 @@ from datetime import datetime, date, timedelta
 import pandas as pd
 from pytz import timezone
 import math
+from flask import Flask, flash
 
 eastern = timezone('US/Eastern')
 threshold = 0.8 #80% threshold
