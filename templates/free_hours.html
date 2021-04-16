@@ -63,13 +63,13 @@
 
         <tr>
           <th><b>WHOLE DAY</b></th>
-          <th><input onClick="selectAll()" id="1" type="checkbox" name="SUN_999_1"></th>
-          <th><input onClick="selectAll()" id="2" type="checkbox" name="MON_999_1"></th>
-          <th><input onClick="selectAll()" id="3" type="checkbox" name="TUES_999_1"></th>
-          <th><input onClick="selectAll()" id="4" type="checkbox" name="WED_999_1"></th>
-          <th><input onClick="selectAll()" id="5" type="checkbox" name="THURS_999_1"></th>
-          <th><input onClick="selectAll()" id="6" type="checkbox" name="FRI_999_1"></th>
-          <th><input onClick="selectAll()" id="7" type="checkbox" name="SAT_999_1"></th>
+          <th><input onClick="selectAllSun()" id="1" type="checkbox" name="SUN_999_1"></th>
+          <th><input onClick="selectAllMon()" id="2" type="checkbox" name="MON_999_1"></th>
+          <th><input onClick="selectAllTues()" id="3" type="checkbox" name="TUES_999_1"></th>
+          <th><input onClick="selectAllWed()" id="4" type="checkbox" name="WED_999_1"></th>
+          <th><input onClick="selectAllThurs()" id="5" type="checkbox" name="THURS_999_1"></th>
+          <th><input onClick="selectAllFri()" id="6" type="checkbox" name="FRI_999_1"></th>
+          <th><input onClick="selectAllSat()" id="7" type="checkbox" name="SAT_999_1"></th>
         </tr>
 
       <tr>
@@ -328,7 +328,7 @@ const id7 = document.getElementById('7');
 var saturday = document.getElementsByClassName("checked7");
 
 console.log(id1.checked)
-function selectAll() {
+function selectAllSun() {
 if (id1.checked == true) {
 	console.log("true")
  	var items = sunday;
@@ -346,6 +346,8 @@ if (id1.checked == false) {
 
 
 }
+}
+function selectAllMon() {
 if (id2.checked == true) {
 	console.log("true")
  	var items = monday;
@@ -363,6 +365,8 @@ if (id2.checked == false) {
 
 
 }
+}
+function selectAllTues() {
 if (id3.checked == true) {
 	console.log("true")
  	var items = tuesday;
@@ -380,6 +384,8 @@ if (id3.checked == false) {
 
 
 }
+}
+function selectAllWed() {
 if (id4.checked == true) {
 	console.log("true")
  	var items = wednesday;
@@ -397,6 +403,8 @@ if (id4.checked == false) {
 
 
 }
+}
+function selectAllThurs() {
 if (id5.checked == true) {
 	console.log("true")
  	var items = thursday;
@@ -414,6 +422,8 @@ if (id5.checked == false) {
 
 
 }
+}
+function selectAllFri() {
 if (id6.checked == true) {
 	console.log("true")
  	var items = friday;
@@ -431,6 +441,8 @@ if (id6.checked == false) {
 
 
 }
+}
+function selectAllSat() {
 if (id7.checked == true) {
 	console.log("true")
  	var items = saturday;
