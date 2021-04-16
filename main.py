@@ -53,6 +53,11 @@ def login_page():
 def signup_page():
     return render_template("signup.html", error=[])
 
+# Route to How To Page
+@app.route("/info")
+def info_page():
+    return render_template("info.html", error=[])
+
 # Route to Enter Schedule Page
 @app.route("/free_hours")
 def hours_page():
@@ -66,7 +71,7 @@ def course_page():
 # Route to Add Assignments Page
 @app.route("/assignment")
 def assignment_page():
-    output = get_courses()       
+    output = get_courses()
     course_names = [ x["name"] for x in output]
     print(course_names)
     return render_template("assignment.html", courses=course_names, error=[])
@@ -102,7 +107,7 @@ def login():
 def create_new_user():
     # Gets information from form
     username = request.form.get("username")
-    password = request.form.get("password")  
+    password = request.form.get("password")
     #print(list(existing_users()))
     # Checks to see if username is already taken
     if username in existing_users():
@@ -113,7 +118,7 @@ def create_new_user():
     session["user"]=new_user.username
     session['logged_in'] = True
     # Redirects user to Home Page if Sign up is successful
-    return redirect("/")    
+    return redirect("/")
 
 # Gets list of all users from database
 def existing_users():
@@ -129,7 +134,7 @@ def enter_courses():
     user = get_current_user()
     new_course = Course(course_name, course_colors, user)
     new_course.store_course(datastore_client)
-    return redirect("/")    
+    return redirect("/")
 
 # Processes Assignment Info
 @app.route("/add-assignment/", methods=["POST"])
@@ -202,7 +207,7 @@ def enter_schedule():
         sat_hours = generateScheduleID("SAT", 0, 24)
         sat_off = parseDayCheckboxes(sat_hours, 6)
         print(free_hours.returnSchedule())
-        
+
         # store off days to the db
         user = get_current_user()
         off_days_key = datastore_client.key("Off Days", user)
@@ -216,17 +221,17 @@ def enter_schedule():
         off_days["fri"] = fri_off
         off_days["sat"] = sat_off
         datastore_client.put(off_days)
-        return redirect("/")  
+        return redirect("/")
 
-# gets the days the user is off      
-def get_days_off():    
+# gets the days the user is off
+def get_days_off():
     q = datastore_client.query(kind="Off Days")
     user = get_current_user()
     q.add_filter("user", "=", user)
     days_off = q.fetch()
     # @Nayana and @Caroline
     # Should get 1 item
-    # To access days off and use in function (put this code in whatever 
+    # To access days off and use in function (put this code in whatever
     # function you are using but don't uncomment here)
     # for d in days_off:
         #if d["sun"] == True:
@@ -274,20 +279,20 @@ def get_free_hours():
     free_hours = q.fetch()
     # @Nick
     # Should get 7 items, one for each day of the week
-    # To access and send free hours to webpage (put this code in whatever 
+    # To access and send free hours to webpage (put this code in whatever
     # function you are using but don't uncomment here)
     # for w in free_hours:
         #if w["day"] == "SUN":
             #sun_hours = w["hours"]
         #elif w["day"] == "MON":
             #mon_hours = w["hours"]
-        #etc 
-    # the values stored in mon_hours will be an array/list 
+        #etc
+    # the values stored in mon_hours will be an array/list
     # of free time slots for that day
     return free_hours
 
 if __name__ == "__main__":
-    app.run(host='127.0.0.1', port=5000, debug=True) 
+    app.run(host='127.0.0.1', port=5000, debug=True)
 
     # python3 main.py  to run it
-    # ctr +c to end the session 
+    # ctr +c to end the session

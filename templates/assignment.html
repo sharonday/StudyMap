@@ -20,7 +20,7 @@
       <a class="nav-link" href="/">StudyMap</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">How To</a>
+      <a class="nav-link" href="/info">How To</a>
     </li>
     {% if session['logged_in'] %}
     <li class="nav-item">
@@ -34,7 +34,7 @@
     </li>
     <li class="nav-item">
           <a class="nav-link" href="/workspace">Workspace</a>
-    </li>    
+    </li>
     {% endif %}
     <li class="nav-item">
         {% if session['logged_in'] %}
@@ -43,20 +43,20 @@
             <a class="nav-link" href="/login">Login</a>
         {% endif %}
     </li>
-    
+
   </ul>
 
 </nav>
     <main class = "mid-column">
         <header class = "top-heading-course">
         <h1>Welcome to StudyMap</h1>
-            
+
         </header>
         <div id = "add">
             <h2 class="center-headings-course">Add Assignments</h2>
             <form id = "assignments" action= "/add-assignment/" method = "POST">
                 <p>
-                    {% if courses|length == 0 %} 
+                    {% if courses|length == 0 %}
                      <p style="color:red">Please Enter Courses First!</p>
                     {% endif %}
                     <label>Assignment Name</label>
@@ -68,10 +68,10 @@
                 </p>
                     <label>What course is this for?</label>
                     <select name="hwcourse">
-                         {% for c in courses %}               
+                         {% for c in courses %}
                          <option value="{{c}}">{{c}}</option>
                          {% endfor %}
-                     </select>  
+                     </select>
                 <p>
                     <label>Estimated Work Time (Hours)</label>
                     <input type = "number" min="1" name = "hours" required>
@@ -83,7 +83,7 @@
             <script>
                function displayinfo(){
 
-                
+
                         var form = document.getElementById('assignments');
                         let name = form.elements['hwname'].value;
                         let date = form.elements['hwdate'].value;
@@ -92,7 +92,7 @@
 
                         alert("you entered assignment : " + name + " due on " + date + " for course " + coursename + " and it will take " + estWork + " hours");
 
-                }       
+                }
                 window.onload = () =>{
 
                         document.getElementById("submit").addEventListener('click', displayinfo);

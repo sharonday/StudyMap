@@ -10,7 +10,7 @@
 </head>
 
 
-<body>   
+<body>
       <!-- A grey horizontal navbar that becomes vertical on small screens -->
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
@@ -20,7 +20,7 @@
       <a class="nav-link" href="/">StudyMap</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">How To</a>
+      <a class="nav-link" href="/info">How To</a>
     </li>
     {% if session['logged_in'] %}
     <li class="nav-item">
@@ -43,19 +43,19 @@
             <a class="nav-link" href="/login">Login</a>
         {% endif %}
     </li>
-    
+
   </ul>
 
-</nav> 
+</nav>
     <main class = "mid-column">
         <header class = "top-heading-course">
         <h1 class = "center-headings-course">Welcome to StudyMap</h1>
-            
+
         </header>
         <div id = "add">
             <h2 class = "center-headings-course">Add Course Info</h2>
             <form id = "course" action = "/add-course/" method = "POST">
-            
+
             <p>
                 <label>Course Name</label>
                 <input type = "text" name = "course1" required>
@@ -79,7 +79,7 @@
 
                 function displayinfo(){
 
-                
+
                             var form = document.getElementById('course');
                             let name = form.elements['course1'];
                             let color = form.elements['course_colors'];
@@ -87,7 +87,7 @@
                             let colorval = color.value;
 
                             alert("you entered course : " + coursename + " with color " + colorval);
-                    
+
                 }
                 window.onload = () =>{
 
