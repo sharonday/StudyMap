@@ -6,6 +6,8 @@ from pytz import timezone
 import math
 
 eastern = timezone('US/Eastern')
+threshold = 0.8 #80% threshold
+scale = 2 #30 min scale
 
 class AssignmentSplitter(object):
     def __init__(self, assignments, off_days, free_hours):
@@ -51,7 +53,6 @@ class AssignmentSplitter(object):
                 num_free_hours[5] = len(d["hours"])
             if d["day"] == "SAT":
                 num_free_hours[6] = len(d["hours"])
-        print("NUM FREE HOURS: " + str(num_free_hours))
         return num_free_hours
     
     def split_assignments(self):
@@ -67,32 +68,41 @@ class AssignmentSplitter(object):
             between_days = self.get_between_days(curr_date, num_days)
             between_days = self.remove_off_days(between_days)
             blocks_per_day = self.get_time_per_day(between_days, hours)            
-            self.split_blocks_per_day(between_days, blocks_per_day, float(hours))
-            print(self.day_dict)
+            self.split_blocks_per_day(between_days, blocks_per_day, float(hours), [name, course])
+        return self.day_dict
     
-    def split_blocks_per_day(self, between_days, blocks_per_day, hours):
+    def get_curr_assign_sum(self, assign_list):
+        total_sum = 0
+        for assign in assign_list:
+            num_hours = assign[0]
+            total_sum += num_hours
+        return total_sum        
+    
+    def split_blocks_per_day(self, between_days, blocks_per_day, hours, assignment_info):
         total_hours = 0
         for date in between_days:
             #divide by two for number of hours
-            num_hours = float(blocks_per_day) / 2
+            num_hours = float(blocks_per_day) / scale
             if date.date() in self.day_dict:
                 #get current number of allocated hours
-                current_hours = sum(self.day_dict[date.date()])
+                current_hours = self.get_curr_assign_sum(self.day_dict[date.date()])
                 #determine max hours for that day
                 max_hours = self.get_available_hours(date)
-                #check to see that current hours and new hours don't exceed max hours
+                #check to see that current hours and new hours don't exceed threshold hours
                 if current_hours + num_hours < max_hours:
                     #append to dictionary
-                    self.day_dict[date.date()].append(num_hours)
+                    self.day_dict[date.date()].append((num_hours, assignment_info))
                     #add current hours to running sum
                     total_hours += num_hours
                     if total_hours >= hours:
                         break
                 else:
+                    #overscheduled for day
                     continue
+
             else:
                 #insert into dictionary
-                self.day_dict[date.date()] = [num_hours]
+                self.day_dict[date.date()] = [(num_hours, assignment_info)]
                 #add current hours to running sum
                 total_hours += num_hours
                 #determine if we've reached the allocated hours
@@ -139,8 +149,8 @@ class AssignmentSplitter(object):
     def get_time_per_day(self, between_days, hours):
         hours_available = self.get_curr_hours(between_days)
         if float(hours) < hours_available:
-            #multiply by 2 (split into 30 min chunks)
-            num_hours = float(hours) * 2 #change factor based on discretization
+            #multiply by scale 
+            num_hours = float(hours) * scale #change factor based on discretization
             #divide by number of days (round up)
             num_blocks_per_day = math.ceil(num_hours/len(between_days))
         return num_blocks_per_day
@@ -157,13 +167,3 @@ class AssignmentSplitter(object):
         day_index = day_enum[day]
         num_free_hours = self.free_hours[day_index]
         return num_free_hours
-    
-    
-
-            
-
-
-
-
-
-                        

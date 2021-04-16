@@ -145,7 +145,8 @@ def enter_assignments():
 
     #split assignments
     splitter = AssignmentSplitter(get_assignments(), get_days_off(), get_free_hours())
-    splitter.split_assignments()
+    date_dict = splitter.split_assignments()
+    print(date_dict)
     return redirect("/")
 
 # get the current user's courses
