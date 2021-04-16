@@ -98,6 +98,7 @@ class AssignmentSplitter(object):
                         break
                 else:
                     #overscheduled for day
+                    flash('Error: overscheduled for day')
                     continue
 
             else:
@@ -153,6 +154,9 @@ class AssignmentSplitter(object):
             num_hours = float(hours) * scale #change factor based on discretization
             #divide by number of days (round up)
             num_blocks_per_day = math.ceil(num_hours/len(between_days))
+        #no hours left to work
+        else:
+            flash('Error: overscheduled')
         return num_blocks_per_day
 
     def get_available_hours(self, date):
