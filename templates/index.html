@@ -52,30 +52,51 @@
       <div class="col weekday list">
         <h3 class="list-title">Monday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in mon %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Tuesday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in tues %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Wednesday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in wed %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Thursday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in thurs %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Friday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in fri %}
+          <p>{{ hours }} </p>
+        {% endfor %}
       </div>
       <div class="col weekend list">
         <h3 class="list-title">Saturday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in sat %}
+          <p>{{ hours }} </p>
+        {% endfor %}
       </div>
       <div class="col weekend list">
         <h3 class="list-title">Sunday</h3>
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in sun %}
+          <p>{{ hours }} </p>
+        {% endfor %}
       </div>
     </div>
   </div>
