@@ -25,6 +25,54 @@ def home():
     th_hours = list()
     f_hours = list()
     sat_hours = list()
+
+    s_work = list()
+    m_work = list()
+    t_work = list()
+    w_work = list()
+    th_work = list()
+    f_work = list()
+    sat_work = list()
+    sun_work = list()
+    work_dict = split()
+    if(work_dict == None):
+        return render_template("index.html", user=current_user)
+    isWeek = False
+    for key in work_dict:
+        if(list(work_dict.keys())[0].weekday() == key.weekday() and isWeek ):
+            break
+        isWeek = True
+        for item in work_dict[key]:
+            assign = list()
+            num = item[0]
+            book = item[1][0]
+            course = item[1][1]
+            assign.append(num)
+            assign.append(book)
+            assign.append(course)
+
+            if(key.weekday() == 0):
+                m_work.append(assign)
+                print(m_work)
+            if(key.weekday() == 1):
+                t_work.append(assign)
+                print(t_work)
+            if(key.weekday() == 2):
+                w_work.append(assign)
+            if(key.weekday() == 3):
+                th_work.append(assign)
+                print(th_work)
+            if(key.weekday() == 4):
+                f_work.append(assign)
+                print(f_work)
+            if(key.weekday() == 5):
+                sat_work.append(assign)
+                print(sat_work)
+            if(key.weekday() == 6):
+                sun_work.append(assign)
+                print(sun_work)
+    
+        
     for days in free_hours:
         if days["day"] == "SUN":
             s_hours = days["hours"]
@@ -41,7 +89,8 @@ def home():
         if days["day"] == "SAT":
             sat_hours = days["hours"]
     print("CURRENT USER: " + str(current_user))
-    return render_template("index.html", user=current_user, sun=s_hours, mon=m_hours,tues=t_hours,wed=s_hours,thurs=th_hours,fri=f_hours,sat=sat_hours)
+    return render_template("index.html", user=current_user, sun=s_hours, mon=m_hours, tues=t_hours,wed=s_hours, thurs=th_hours, fri=f_hours, sat=sat_hours
+    , W_sun=s_work, W_mon=m_work, W_tues=t_work, W_wed=w_work, W_thurs=th_work, W_fri=f_work, W_sat=sat_work)
 
 # Route to Login Page
 @app.route("/login")
@@ -148,14 +197,6 @@ def enter_assignments():
     new_assign = Assignment(assign_name, assign_date, assign_course, assign_hours, user)
     new_assign.store_assignment(datastore_client)
 
-    #split assignments
-    splitter = AssignmentSplitter(get_assignments(), get_days_off(), get_free_hours())
-    date_dict = splitter.split_assignments()
-    if date_dict == None:
-        flash("You have overscheduled. Please update your schedule to add more free hours", "error")
-        print("OVERSCHEDULED")
-    else:
-        print("DATE DICT: " + str(date_dict))
     return redirect("/")
 
 # get the current user's courses
@@ -165,6 +206,16 @@ def get_courses():
     q.add_filter("user", "=", user)
     courses = q.fetch()
     return courses
+
+def split():
+    splitter = AssignmentSplitter(get_assignments(), get_days_off(), get_free_hours())
+    date_dict = splitter.split_assignments()
+    if date_dict == None:
+        flash("You have overscheduled. Please update your schedule to add more free hours", "error")
+        print("OVERSCHEDULED")
+    else:
+        print("DATE DICT: " + str(date_dict))
+    return date_dict
 
 # get the current user's assignments
 def get_assignments():
