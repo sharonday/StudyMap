@@ -4,6 +4,7 @@ from datetime import datetime, date, timedelta
 import pandas as pd
 from pytz import timezone
 import math
+from flask import flash
 
 eastern = timezone('US/Eastern')
 threshold = 0.8 #80% threshold
@@ -67,7 +68,9 @@ class AssignmentSplitter(object):
             num_days = due_date.replace(tzinfo=None)-curr_date.replace(tzinfo=None)
             between_days = self.get_between_days(curr_date, num_days)
             between_days = self.remove_off_days(between_days)
-            blocks_per_day = self.get_time_per_day(between_days, hours)            
+            blocks_per_day = self.get_time_per_day(between_days, hours)  
+            if blocks_per_day == None:
+                return None
             self.split_blocks_per_day(between_days, blocks_per_day, float(hours), [name, course])
         return self.day_dict
     
@@ -148,6 +151,7 @@ class AssignmentSplitter(object):
 
     def get_time_per_day(self, between_days, hours):
         hours_available = self.get_curr_hours(between_days)
+        num_blocks_per_day = None
         if float(hours) < hours_available:
             #multiply by scale 
             num_hours = float(hours) * scale #change factor based on discretization

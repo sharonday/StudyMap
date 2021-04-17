@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, request
+from flask import Flask, render_template, session, redirect, request, flash
 from google.cloud import datastore
 
 from user import User
@@ -151,7 +151,11 @@ def enter_assignments():
     #split assignments
     splitter = AssignmentSplitter(get_assignments(), get_days_off(), get_free_hours())
     date_dict = splitter.split_assignments()
-    print(date_dict)
+    if date_dict == None:
+        flash("You have overscheduled. Please update your schedule to add more free hours", "error")
+        print("OVERSCHEDULED")
+    else:
+        print("DATE DICT: " + str(date_dict))
     return redirect("/")
 
 # get the current user's courses
@@ -206,7 +210,6 @@ def enter_schedule():
         fri_off = parseDayCheckboxes(fri_hours, 5)
         sat_hours = generateScheduleID("SAT", 0, 24)
         sat_off = parseDayCheckboxes(sat_hours, 6)
-        print(free_hours.returnSchedule())
 
         # store off days to the db
         user = get_current_user()
@@ -221,6 +224,16 @@ def enter_schedule():
         off_days["fri"] = fri_off
         off_days["sat"] = sat_off
         datastore_client.put(off_days)
+
+        #split assignments
+        splitter = AssignmentSplitter(get_assignments(), get_days_off(), get_free_hours())
+        date_dict = splitter.split_assignments()
+        if date_dict == None:
+            print("OVERSCHEDULED")
+            flash("You have overscheduled. Please update your schedule to add more free hours", "error")
+        else:
+            print("DATE DICT: " + str(date_dict))
+
         return redirect("/")
 
 # gets the days the user is off
