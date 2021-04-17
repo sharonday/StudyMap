@@ -56,6 +56,12 @@
         {% for hours in mon %}
           <p>{{ hours }}</p>
         {% endfor %}
+        <p>Assignments for the day</p>
+        {% if W_mon|length > 0 %}
+        {% for item in W_mon %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Tuesday</h3>
@@ -63,6 +69,13 @@
         {% for hours in tues %}
           <p>{{ hours }}</p>
         {% endfor %}
+        <p>Assignments for the day</p>
+        {% if W_tues|length > 0 %}
+        {% for item in W_tues %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
+         
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Wednesday</h3>
@@ -70,6 +83,12 @@
         {% for hours in wed %}
           <p>{{ hours }}</p>
         {% endfor %}
+        <p>Assignments for the day</p>
+        {% if W_wed|length > 0 %}
+        {% for item in W_wed %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Thursday</h3>
@@ -77,6 +96,12 @@
         {% for hours in thurs %}
           <p>{{ hours }}</p>
         {% endfor %}
+        <p>Assignments for the day</p>
+        {% if W_thurs|length > 0 %}
+        {% for item in W_thurs %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
       </div>
       <div class="col weekday list">
         <h3 class="list-title">Friday</h3>
@@ -84,6 +109,12 @@
         {% for hours in fri %}
           <p>{{ hours }} </p>
         {% endfor %}
+        <p>Assignments for the day</p>
+        {% if W_fri|length > 0 %}
+        {% for item in W_fri %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
       </div>
       <div class="col weekend list">
         <h3 class="list-title">Saturday</h3>
@@ -91,6 +122,12 @@
         {% for hours in sat %}
           <p>{{ hours }} </p>
         {% endfor %}
+        <p>Assignments for the day</p>
+        {% if W_sat|length > 0 %}
+        {% for item in W_sat %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
       </div>
       <div class="col weekend list">
         <h3 class="list-title">Sunday</h3>
@@ -98,6 +135,12 @@
         {% for hours in sun %}
           <p>{{ hours }} </p>
         {% endfor %}
+        <p>Assignments for the day</p>
+        {% if W_sun|length > 0 %}
+        {% for item in W_sun %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
       </div>
     </div>
   </div>
