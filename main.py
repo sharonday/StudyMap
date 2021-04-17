@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, redirect, request
+from flask import Flask, render_template, session, redirect, request, flash
 from google.cloud import datastore
 
 from user import User
@@ -151,7 +151,10 @@ def enter_assignments():
     #split assignments
     splitter = AssignmentSplitter(get_assignments(), get_days_off(), get_free_hours())
     date_dict = splitter.split_assignments()
-    print(date_dict)
+    if date_dict == None:
+        flash("You have overscheduled. Please update your schedule to add more free hours", "error")
+    else:
+        print("DATE DICT: " + str(date_dict))
     return redirect("/")
 
 # get the current user's courses

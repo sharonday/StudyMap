@@ -47,6 +47,7 @@
   </ul>
 
 </nav>
+{% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %} <p> {{msg}} </p> {% endfor %} {% endif %} {% endwith %}
   <div class="container-fluid">
     <div class="row">
       <div class="col weekday list">
