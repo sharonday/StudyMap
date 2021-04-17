@@ -1,5 +1,7 @@
 from flask import Flask, render_template, session, redirect, request, flash
 from google.cloud import datastore
+from datetime import datetime, date, timedelta
+from pytz import timezone
 
 from user import User
 from course import Course, Assignment
@@ -26,53 +28,6 @@ def home():
     f_hours = list()
     sat_hours = list()
 
-    s_work = list()
-    m_work = list()
-    t_work = list()
-    w_work = list()
-    th_work = list()
-    f_work = list()
-    sat_work = list()
-    sun_work = list()
-    work_dict = split()
-    if(work_dict == None):
-        return render_template("index.html", user=current_user)
-    isWeek = False
-    for key in work_dict:
-        if(list(work_dict.keys())[0].weekday() == key.weekday() and isWeek ):
-            break
-        isWeek = True
-        for item in work_dict[key]:
-            assign = list()
-            num = item[0]
-            book = item[1][0]
-            course = item[1][1]
-            assign.append(num)
-            assign.append(book)
-            assign.append(course)
-
-            if(key.weekday() == 0):
-                m_work.append(assign)
-                print(m_work)
-            if(key.weekday() == 1):
-                t_work.append(assign)
-                print(t_work)
-            if(key.weekday() == 2):
-                w_work.append(assign)
-            if(key.weekday() == 3):
-                th_work.append(assign)
-                print(th_work)
-            if(key.weekday() == 4):
-                f_work.append(assign)
-                print(f_work)
-            if(key.weekday() == 5):
-                sat_work.append(assign)
-                print(sat_work)
-            if(key.weekday() == 6):
-                sun_work.append(assign)
-                print(sun_work)
-    
-        
     for days in free_hours:
         if days["day"] == "SUN":
             s_hours = days["hours"]
@@ -88,9 +43,141 @@ def home():
             f_hours = days["hours"]
         if days["day"] == "SAT":
             sat_hours = days["hours"]
+
+    work0 = list()
+    work1 = list()
+    work2 = list()
+    work3 = list()
+    work4 = list()
+    work5 = list()
+    work6 = list()
+    work_dict = split()
+
+    curr_date = get_current_week()
+
+    for d in range(7):
+        if d == 0:
+            day0 = get_work_for_day(curr_date.weekday())
+            hours0 = hours_for_day(curr_date.weekday(), s_hours, m_hours, t_hours, w_hours, th_hours, f_hours, sat_hours)
+            date0 = curr_date.strftime("%m-%d")
+        if d == 1:
+            date = curr_date + timedelta(days=d)            
+            day1 = get_work_for_day(date.weekday())
+            hours1 = hours_for_day(date.weekday(), s_hours, m_hours, t_hours, w_hours, th_hours, f_hours, sat_hours)
+            date1 = date.strftime("%m-%d")
+        if d == 2:
+            date = curr_date + timedelta(days=d)
+            day2 = get_work_for_day(date.weekday())
+            hours2 = hours_for_day(date.weekday(), s_hours, m_hours, t_hours, w_hours, th_hours, f_hours, sat_hours)
+            date2 = date.strftime("%m-%d")
+        if d == 3:
+            date = curr_date + timedelta(days=d)
+            day3 = get_work_for_day(date.weekday())
+            hours3 = hours_for_day(date.weekday(), s_hours, m_hours, t_hours, w_hours, th_hours, f_hours, sat_hours)
+            date3 = date.strftime("%m-%d")        
+        if d == 4:
+            date = curr_date + timedelta(days=d)
+            day4 = get_work_for_day(date.weekday())
+            hours4 = hours_for_day(date.weekday(), s_hours, m_hours, t_hours, w_hours, th_hours, f_hours, sat_hours)
+            date4 = date.strftime("%m-%d")
+        if d == 5:
+            date = curr_date + timedelta(days=d)
+            day5 = get_work_for_day(date.weekday())
+            hours5 = hours_for_day(date.weekday(), s_hours, m_hours, t_hours, w_hours, th_hours, f_hours, sat_hours)
+            date5 = date.strftime("%m-%d")
+        if d == 6:
+            date = curr_date + timedelta(days=d)
+            day6 = get_work_for_day(date.weekday())
+            hours6 = hours_for_day(date.weekday(), s_hours, m_hours, t_hours, w_hours, th_hours, f_hours, sat_hours)
+            date6 = date.strftime("%m-%d")
+
+    if current_user == None: 
+        return render_template("index.html", user=None,day0=day0, day1=day1, day2=day2, day3=day3, day4=day4, day5=day5, day6=day6,
+            date0=date0, date1=date1, date2=date2, date3=date3, date4=date4, date5=date5, date6=date6)
+
+    if(work_dict == None):
+        return render_template("index.html", user=current_user)
+    isWeek = False
+    for key in work_dict:
+        #if(list(work_dict.keys())[0].weekday() == key.weekday() and isWeek ):
+           # break
+        #isWeek = True
+        if(isWeek):
+           break
+        for item in work_dict[key]:
+            assign = list()
+            num = item[0]
+            book = item[1][0]
+            course = item[1][1]
+            assign.append(num)
+            assign.append(book)
+            assign.append(course)
+            
+
+            if(str(key) == curr_date.strftime("%Y-%m-%d")):
+                work0.append(assign)       
+            if (str(key) == (curr_date + timedelta(days=1)).strftime("%Y-%m-%d")):
+                work1.append(assign)
+            if (str(key) == (curr_date + timedelta(days=2)).strftime("%Y-%m-%d")):
+                work2.append(assign)
+            if (str(key) == (curr_date + timedelta(days=3)).strftime("%Y-%m-%d")):
+                work3.append(assign)
+            if (str(key) == (curr_date + timedelta(days=4)).strftime("%Y-%m-%d")):
+                work4.append(assign)
+            if (str(key) == (curr_date + timedelta(days=5)).strftime("%Y-%m-%d")):
+                work5.append(assign)
+            if (str(key) == (curr_date + timedelta(days=6)).strftime("%Y-%m-%d")):
+                work6.append(assign)
+                isWeek = True
+                
     print("CURRENT USER: " + str(current_user))
-    return render_template("index.html", user=current_user, sun=s_hours, mon=m_hours, tues=t_hours,wed=s_hours, thurs=th_hours, fri=f_hours, sat=sat_hours
-    , W_sun=s_work, W_mon=m_work, W_tues=t_work, W_wed=w_work, W_thurs=th_work, W_fri=f_work, W_sat=sat_work)
+    #m_date=m_date, t_date=t_date, w_date=w_date, th_date=th_date, 
+    #f_date=f_date, s_date=s_date    
+    return render_template("index.html", user=current_user, day0=day0, day1=day1, day2=day2, day3=day3, day4=day4, day5=day5, day6=day6,
+     hours0=hours0, hours1=hours1, hours2=hours2, hours3=hours3, hours4=hours4, hours5=hours5, hours6=hours6,
+     date0=date0, date1=date1, date2=date2, date3=date3, date4=date4, date5=date5, date6=date6,
+     work0=work0, work1=work1, work2=work2, work3=work3, work4=work4, work5=work5, work6=work6)
+
+def get_work_for_day(w_day):
+    if(w_day == 0):
+        day = "Monday"
+    if(w_day == 1):
+        day = "Tuesday"
+    if(w_day == 2):
+        day = "Wednesday"
+    if(w_day == 3):
+        day = "Thursday"
+    if(w_day == 4):
+        day = "Friday"
+    if(w_day == 5):
+        day = "Saturday"
+    if(w_day == 6): 
+        day = "Sunday"              
+    return day
+
+def hours_for_day(w_day, s_hours, m_hours, t_hours, w_hours, th_hours, f_hours, sat_hours):
+    if(w_day == 0):
+        hours = m_hours
+    if(w_day == 1):
+        hours = t_hours
+    if(w_day == 2):
+        hours = w_hours
+    if(w_day == 3):
+        hours = th_hours
+    if(w_day == 4):
+        hours = f_hours
+    if(w_day == 5):
+        hours = sat_hours
+    if(w_day == 6): 
+        hours = s_hours
+    
+    return hours
+
+def get_current_week():
+    curr_date = datetime.now()  
+    eastern = timezone('US/Eastern')  
+    curr_date = curr_date.astimezone(eastern)
+    return curr_date
 
 # Route to Login Page
 @app.route("/login")
