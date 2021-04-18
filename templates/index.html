@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="/static/style.css">
+  <link href="../static/style.css" rel="stylesheet">
 </head>
 <body>
   <!-- A grey horizontal navbar that becomes vertical on small screens -->
@@ -20,7 +20,7 @@
       <a class="nav-link" href="/">StudyMap</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">How To</a>
+      <a class="nav-link" href="info">How To</a>
     </li>
     {% if session['logged_in'] %}
     <li class="nav-item">
@@ -34,48 +34,120 @@
     </li>
     <li class="nav-item">
           <a class="nav-link" href="/workspace">Workspace</a>
-    </li>    
+    </li>
     {% endif %}
     <li class="nav-item">
         {% if session['logged_in'] %}
             <a class="nav-link" href="/logout-user/">Logout</a>
         {% else %}
             <a class="nav-link" href="/login">Login</a>
-        {% endif %}  
+        {% endif %}
     </li>
-    
+
   </ul>
 
 </nav>
+{% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %} <p> {{msg}} </p> {% endfor %} {% endif %} {% endwith %}
   <div class="container-fluid">
     <div class="row">
       <div class="col weekday list">
-        <h3 class="list-title">Monday</h3>
+        <h3 class="list-title">{{ day0 }}</h3>
+        <h4>{{ date0 }}</h4>
+        <h6>Assignments for the day</h6>
+        {% if work0|length > 0 %}
+        {% for item in work0 %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in hours0 %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
-        <h3 class="list-title">Tuesday</h3>
+        <h3 class="list-title">{{ day1 }}</h3>
+        <h4>{{ date1 }}</h4>
+        <h6>Assignments for the day</h6>
+        {% if work1|length > 0 %}
+        {% for item in work1 %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in hours1 %}
+          <p>{{ hours }}</p>
+        {% endfor %}
+
       </div>
       <div class="col weekday list">
-        <h3 class="list-title">Wednesday</h3>
+        <h3 class="list-title">{{ day2 }}</h3>
+        <h4>{{ date2 }}</h4>
+        <h6>Assignments for the day</h6>
+        {% if work2|length > 0 %}
+        {% for item in work2 %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in hours2 %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
-        <h3 class="list-title">Thursday</h3>
+        <h3 class="list-title">{{ day3 }}</h3>
+        <h4>{{ date3 }}</h4>
+        <h6>Assignments for the day</h6>
+        {% if work3|length > 0 %}
+        {% for item in work3 %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in hours3 %}
+          <p>{{ hours }}</p>
+        {% endfor %}
       </div>
       <div class="col weekday list">
-        <h3 class="list-title">Friday</h3>
+        <h3 class="list-title">{{ day4 }}</h3>
+        <h4>{{ date4 }}</h4>
+        <h6>Assignments for the day</h6>
+        {% if work4|length > 0 %}
+        {% for item in work4 %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in hours4 %}
+          <p>{{ hours }} </p>
+        {% endfor %}
       </div>
       <div class="col weekend list">
-        <h3 class="list-title">Saturday</h3>
+        <h3 class="list-title">{{ day5 }}</h3>
+        <h4>{{ date5 }}</h4>
+        <h6>Assignments for the day</h6>
+        {% if work5|length > 0 %}
+        {% for item in work5 %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in hours5 %}
+          <p>{{ hours }} </p>
+        {% endfor %}
       </div>
       <div class="col weekend list">
-        <h3 class="list-title">Sunday</h3>
+        <h3 class="list-title">{{ day6 }}</h3>
+        <h4>{{ date6 }}</h4>
+        <h6>Assignments for the day</h6>
+        {% if work6|length > 0 %}
+        {% for item in work6 %}
+          <p>{{item[0]}} hours for assignment "{{item[1]}}" in course "{{item[2]}}"</p>
+        {% endfor %}
+        {% endif %}
         <h6 class="suggested-work-time">Suggested Work Times</h6>
+        {% for hours in hours6 %}
+          <p>{{ hours }} </p>
+        {% endfor %}
       </div>
     </div>
   </div>
