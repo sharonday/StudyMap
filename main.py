@@ -266,7 +266,8 @@ def existing_users():
 @app.route("/add-course/", methods=["POST"])
 def enter_courses():
     course_name = request.form.get("course1")
-    course_colors = request.form.get("course_colors")
+    #course_colors = request.form.get("course_colors")
+    course_colors = None
     user = get_current_user()
     new_course = Course(course_name, course_colors, user)
     new_course.store_course(datastore_client)

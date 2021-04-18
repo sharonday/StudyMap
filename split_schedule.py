@@ -8,7 +8,7 @@ from flask import flash
 
 eastern = timezone('US/Eastern')
 threshold = 0.8 #80% threshold
-scale = 2 #30 min scale
+scale = 4 #15 min scale
 
 class AssignmentSplitter(object):
     def __init__(self, assignments, off_days, free_hours):
