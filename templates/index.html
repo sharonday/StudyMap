@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="../static/style.css" rel="stylesheet">
 </head>
 <body>
   <!-- A grey horizontal navbar that becomes vertical on small screens -->
@@ -52,7 +52,7 @@
     <div class="row">
       <div class="col weekday list">
         <h3 class="list-title">{{ day0 }}</h3>
-        <h4>{{ date0 }}</h4>        
+        <h4>{{ date0 }}</h4>
         <h6>Assignments for the day</h6>
         {% if work0|length > 0 %}
         {% for item in work0 %}
@@ -76,8 +76,8 @@
         <h6 class="suggested-work-time">Suggested Work Times</h6>
         {% for hours in hours1 %}
           <p>{{ hours }}</p>
-        {% endfor %}        
-         
+        {% endfor %}
+
       </div>
       <div class="col weekday list">
         <h3 class="list-title">{{ day2 }}</h3>
