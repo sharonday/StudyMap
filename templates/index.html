@@ -50,7 +50,14 @@
 {% with messages = get_flashed_messages() %} {% if messages %} {% for msg in messages %} <p> {{msg}} </p> {% endfor %} {% endif %} {% endwith %}
   <div class="container-fluid">
     <div class="row">
-      <div class="col weekday list">
+        
+      {% if day0 == "Saturday" %}
+        <div class="col weekend list"> 
+      {% elif day0 == "Sunday" %}
+        <div class="col weekend list">
+      {% else %}
+        <div class="col weekday list"> 
+      {% endif %}
         <h3 class="list-title">{{ day0 }}</h3>
         <h4 class="weekday-date">{{ date0 }}</h4>
         <h6>Assignments for the day</h6>
@@ -64,7 +71,14 @@
           <p>{{ hours }}</p>
         {% endfor %}
       </div>
-      <div class="col weekday list">
+
+      {% if day1 == "Saturday" %}
+        <div class="col weekend list"> 
+      {% elif day1 == "Sunday" %}
+        <div class="col weekend list">
+      {% else %}
+        <div class="col weekday list"> 
+      {% endif %}
         <h3 class="list-title">{{ day1 }}</h3>
         <h4 class="weekday-date">{{ date1 }}</h4>
         <h6>Assignments for the day</h6>
@@ -79,7 +93,14 @@
         {% endfor %}
 
       </div>
-      <div class="col weekday list">
+
+      {% if day2 == "Saturday" %}
+        <div class="col weekend list"> 
+      {% elif day2 == "Sunday" %}
+        <div class="col weekend list">
+      {% else %}
+        <div class="col weekday list"> 
+      {% endif %}
         <h3 class="list-title">{{ day2 }}</h3>
         <h4 class="weekday-date">{{ date2 }}</h4>
         <h6>Assignments for the day</h6>
@@ -93,7 +114,14 @@
           <p>{{ hours }}</p>
         {% endfor %}
       </div>
-      <div class="col weekday list">
+
+      {% if day3 == "Saturday" %}
+        <div class="col weekend list"> 
+      {% elif day3 == "Sunday" %}
+        <div class="col weekend list">
+      {% else %}
+        <div class="col weekday list"> 
+      {% endif %}
         <h3 class="list-title">{{ day3 }}</h3>
         <h4 class="weekday-date">{{ date3 }}</h4>
         <h6>Assignments for the day</h6>
@@ -107,7 +135,14 @@
           <p>{{ hours }}</p>
         {% endfor %}
       </div>
-      <div class="col weekday list">
+
+      {% if day4 == "Saturday" %}
+        <div class="col weekend list"> 
+      {% elif day4 == "Sunday" %}
+        <div class="col weekend list">
+      {% else %}
+        <div class="col weekday list"> 
+      {% endif %}
         <h3 class="list-title">{{ day4 }}</h3>
         <h4 class="weekday-date">{{ date4 }}</h4>
         <h6>Assignments for the day</h6>
@@ -121,7 +156,14 @@
           <p>{{ hours }} </p>
         {% endfor %}
       </div>
-      <div class="col weekend list">
+
+      {% if day5 == "Saturday" %}
+        <div class="col weekend list"> 
+      {% elif day5 == "Sunday" %}
+        <div class="col weekend list">
+      {% else %}
+        <div class="col weekday list"> 
+      {% endif %}
         <h3 class="list-title">{{ day5 }}</h3>
         <h4 class="weekday-date">{{ date5 }}</h4>
         <h6>Assignments for the day</h6>
@@ -135,7 +177,14 @@
           <p>{{ hours }} </p>
         {% endfor %}
       </div>
-      <div class="col weekend list">
+     
+      {% if day6 == "Saturday" %}
+        <div class="col weekend list"> 
+      {% elif day6 == "Sunday" %}
+        <div class="col weekend list">
+      {% else %}
+        <div class="col weekday list"> 
+      {% endif %}
         <h3 class="list-title">{{ day6 }}</h3>
         <h4 class="weekday-date">{{ date6 }}</h4>
         <h6>Assignments for the day</h6>
