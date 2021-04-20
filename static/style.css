@@ -94,8 +94,7 @@ body {
 
 .list {
   padding: 20px;
-  border-style: solid;
-  border-weight: 10px;
+  border-style: solid 10px;
   min-height: 500px;
 }
 
