@@ -85,6 +85,7 @@ body {
 
 .weekday {
   background-color: white;
+
 }
 
 .weekend {
@@ -104,11 +105,9 @@ body {
 
 .suggested-work-time {
   text-align: center;
-  position: absolute;
   bottom: 0;
 }
 
 .weekday-date {
   text-align: center;
-  position: absolute;
 }
